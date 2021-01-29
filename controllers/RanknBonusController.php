@@ -47,6 +47,7 @@ class RanknBonusController{
             $chairmanid = $userid ;
             $chairmanbv = $node->get('bronzevalue');
             foreach ($ancestors as $item){
+                if($item->get('id')!=0){
             $children = $item->getChildren();
             $childrencount = count($children);
             $bvbychild = array();
@@ -111,10 +112,12 @@ class RanknBonusController{
     $ranker->addRank($item->get('name'), $item->get('id') ,$item->get('rank') , $level);      
     }
             }
+        }
 
         }
 
         function pay($person, $amount, $description){
+            if($person->get('id')!=0){
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
             $transactionid = $transactionid->fetch_assoc()['LAST_INSERT_ID()'];
@@ -133,6 +136,7 @@ class RanknBonusController{
                
             }
         }
+    }
 
         function payregistration($sponsor, $amount, $description){
             $play1 = new UsersModel();
@@ -142,6 +146,7 @@ class RanknBonusController{
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
             $transactionid = 12;
+            if($person->get('id')!=0){
             if(in_array($person->get('rank'),$eligible4pension)){
             $amount -= 0.07*$amount; 
             $penamount  = 0.05*$amount + (0.05*$amount* 0.2);
@@ -161,6 +166,7 @@ class RanknBonusController{
                 
             }
         }
+        }
 
         function paybonuses($userid,$thisbv){
             $play1 = new UsersModel();
@@ -176,12 +182,15 @@ class RanknBonusController{
 
             
             //direct bonus
+            if($father->get('id')!=0){
             if(in_array($father->get('rank'),$eligible4direct)){
             pay($father, 0.20*$thisbv);
             }
+        }
             //indirect bonus
             $x = 0;
             foreach ($ancestors as $item){
+                if($item->get('id')!=0){
                 if(in_array($item->get('rank'),$eligible4indirect)){
                 switch ($x) {
                     case 0:
@@ -208,6 +217,7 @@ class RanknBonusController{
                 }
                
             }
+        }
 
         } 
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+
 /* include_once('./models/TransactionsModel.php');
  include_once('./models/UsersModel.php');
 include_once('./models/ManagersModel.php');
@@ -118,7 +119,7 @@ $error = $_GET['error'];
                                     }
                                    ?>
 
-                                    <div class="text-center"><a class="small" href="forgot-password">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" onclick = "alert('Contact an admin to help you change your password')" href="forgot-password">Forgot Password?</a></div>
                                     <div class="text-center"><a class="small" href="register">Create an Account!</a></div>
                                 </div>
                             </div>

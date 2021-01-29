@@ -109,7 +109,6 @@ class UsersModel {
         $conn->close();
     }
 
-    // this function updateUserItembyID() will not work needs fix
     function updateUserItembyID ($title,$type,$data,$id){
         global $conn;
         $sql_putTransactions =

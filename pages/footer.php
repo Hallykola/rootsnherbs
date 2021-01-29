@@ -10,6 +10,27 @@
     <script src="assets/js/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/script.min.js"></script>
+    <script>
+ function checkpassword() {
+            let pass = document.getElementById('password').value;
+            let repass = document.getElementById('re-password').value;
+            let reply = document.getElementById('password-reply');
+            let button = document.getElementById('submit-btn');
+            if (pass.length < 6 ) {
+                reply.innerHTML = 'password is too short';
+                reply.style.color = 'red';
+            } else if (pass === repass & pass != '' ) {
+                reply.innerHTML = 'password match';   
+                reply.style.color = 'green'; 
+                button.removeAttribute('disabled');            
+            } else {
+                reply.innerHTML = 'password does not match';
+                reply.style.color = 'red';
+            }
+            console.log(pass);
+            console.log(repass);
+        }
+    </script>
     
     <script>
     $(document).ready(function(){

@@ -64,6 +64,26 @@ class ManagersModel {
         $statement_getTransactions->close();
         $conn->close();
     }
+
+    function updateManagerItembyID ($title,$type,$data,$id){
+        global $conn;
+        $sql_putTransactions =
+        "UPDATE `managers` SET `" . $title . "` =? WHERE `id` = ?";
+        $statement_putTransactions = $conn->prepare($sql_putTransactions);
+        echo $conn->error;
+        $statement_putTransactions->bind_param($type,$data, $id);
+        $statement_putTransactions->execute();
+        echo $conn->error;
+        if($statement_putTransactions->execute()==TRUE){
+           
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+        
+        $statement_putTransactions->close();
+        $conn->close();
+    }
     function updateManagerbyID ($id,$username,$name,$password,$role,$description){
         global $conn;
         $sql_putTransactions =

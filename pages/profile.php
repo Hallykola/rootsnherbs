@@ -65,8 +65,9 @@ if(isset($_POST['submit_data'])) {
     if(true){
         echo  'every is submitted /n';
            $play1 = new UsersModel();
-           $id = $_SESSION['id'];
-           
+           //$id = $_SESSION['id'];
+           $id = $userid;
+
         if($play1->updateUserItembyID ('bankaccount','si',$bankaccount,$id)==TRUE
         && $play1->updateUserItembyID ('phone','si',$phone,$id)==TRUE
         && $play1->updateUserItembyID ('name','si',$name,$id)==TRUE
@@ -76,12 +77,42 @@ if(isset($_POST['submit_data'])) {
             header('location: profile');
             //header('location: dashboard.php');
         }else{
-            $mssg = " Something went wrong, could not update role";
+            $mssg = " Something went wrong, could not update details";
         }
     }
   
 
 }
+
+if(isset($_POST['submit_password'])) {
+  if(isset($_POST['password'])){
+    $password = $_POST['password'];
+    
+    }
+    if(isset($_POST['password_repeat'])){
+    $passwordrepeat = $_POST['password_repeat'];
+    }
+    
+    if(!empty($password)&&!empty($passwordrepeat)){
+           $play1 = new UsersModel();
+           $id = $userid;
+           $hashedpassword = password_hash($password, PASSWORD_BCRYPT);
+
+        if($play1->updateUserItembyID ('password','si',$hashedpassword,$id)==TRUE
+        
+        ){
+            
+            $mssg = "User password updated";
+            header('location: profile');
+            //header('location: dashboard.php');
+        }else{
+            $passwordmssg = " Something went wrong, could not update password";
+        }
+    }
+  
+
+}
+
 include_once('header.php');
 ?>
 
@@ -103,6 +134,16 @@ include_once('header.php');
                             
                             </div>
                         </div>
+                        
+                        <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Bronze Value</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class = "text-success"><?php echo $thisuser['bronzevalue']; ?></h3>
+                                    </div>
+                                </div>
+                                <br/>
                         <div class="card shadow">
                                     <div class="card-header py-3">
                                         <p class="text-primary m-0 font-weight-bold">Bonus Value</p>
@@ -183,12 +224,24 @@ include_once('header.php');
                                 <br/>
                                 <div class="card shadow">
                                     <div class="card-header py-3">
-                                        <p class="text-primary m-0 font-weight-bold">Bronze Value</p>
+                                        <p class="text-primary m-0 font-weight-bold">Change Password</p>
                                     </div>
                                     <div class="card-body">
-                                        <h3 class = "text-success"><?php echo $thisuser['bronzevalue']; ?></h3>
+                                    <form method="POST">
+                                        <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password" onkeyup="checkpassword();" required></div>
+                                    <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="re-password" placeholder="Repeat Password" name="password_repeat" onkeyup="checkpassword();" required></div>
+                                        <br/> <p class="text-center" id="password-reply"></p>
+                                </div>
+                                <input class="btn btn-primary btn-sm" name = "submit_password" value = "Update" type="submit">
+                                </form>
+                                <?php if(!empty($passwordmssg)){
+                                    echo '<div class="text-center" style="color:green">'.$passwordmssg.'</div>';
+                                    } ?>
                                     </div>
                                 </div>
+                                <hr>
+                                
                                 
                             </div>
                         </div>
