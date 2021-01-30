@@ -64,7 +64,7 @@ include_once('header.php');
                                 <?php
                                         while ($row = mysqli_fetch_array($someranks)) { 
         echo "<tr><td>".$row['id']."</td>";
-        echo "<td><a class='nav-item' href = 'profile?id=".$row['id']."'>".$row['name']."</a></td>"; 
+        echo "<td><a class='nav-item' href = 'profile?id=".$row['userid']."'>".$row['name']."</a></td>"; 
         echo "<td>".$row['oldrank']."</td>";  
         echo "<td>".$row['newrank']."</td>";  
         echo "<td>".$row['time']."</td>";  

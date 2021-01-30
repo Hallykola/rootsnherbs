@@ -113,9 +113,10 @@ include_once('header.php');
   <button type="button" class="show">Use Products to assign value</button>
                             <form method = "POST">
                             <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text">User ID</span></div><input class="form-control"  name = "id" type="text">
+                                <div class="input-group-prepend"><span class="input-group-text">User ID</span></div><input class="form-control" placeholder=" Enter name to fetch ID" id = "search-box" name = "id" type="text">
                                 <div class="input-group-append"></div>
                             </div>
+                            <div id="suggesstion-box"></div>
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text">Bronze Value</span></div><input class="form-control" id = "usebv" name = "bv"  type="text">
                                 <div class="input-group-append"></div>

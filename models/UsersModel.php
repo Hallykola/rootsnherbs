@@ -88,7 +88,18 @@ class UsersModel {
         $statement_putTransactions->close();
         $conn->close();
     }
-
+    function suggestusers ($keyword){
+        global $conn;
+        $sql_putTransactions ="SELECT * FROM `users` WHERE `name` like '%" . $keyword . "%' ORDER BY `name` LIMIT 0,10";
+        $statement_putTransactions = $conn->prepare($sql_putTransactions);
+        $statement_putTransactions->execute();
+        $allTransactions = $statement_putTransactions->get_result();
+    
+        return $allTransactions;
+        
+        $statement_putTransactions->close();
+        $conn->close();
+    }
 
     function updateUserbyID ($id,$username,$name,$password,$sponsor,$ancestors,$descendants,$bronzevalue,$rank, $phone, $bankaccount){
         global $conn;

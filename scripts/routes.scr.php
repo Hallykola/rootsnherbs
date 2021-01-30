@@ -48,6 +48,9 @@ Routes::set('users', function(){
 Routes::set('./scripts/logout.scr', function(){
     ControllerRoutes::RenderPage('logout.scr');
 });
+Routes::set('suggestusers', function(){
+    ControllerRoutes::RenderPage('suggestusers');
+});
 Routes::set('getname', function(){
     ControllerRoutes::RenderPage('getname');
 });

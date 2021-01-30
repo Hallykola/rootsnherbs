@@ -68,7 +68,7 @@ include_once('header.php');
                                 <?php
                                         while ($row = mysqli_fetch_array($somebonuses)) { 
         echo "<tr><td>".$row['id']."</td>";
-        echo "<td><a class='nav-item' href = 'profile?id=".$row['id']."'>".$row['name']."</a></td>"; 
+        echo "<td><a class='nav-item' href = 'profile?id=".$row['userid']."'>".$row['name']."</a></td>"; 
         echo "<td>".$row['userid']."</td>";  
         echo "<td>".$row['bonusvalue']."</td>";  
         echo "<td>".$row['transactionid']."</td>";  

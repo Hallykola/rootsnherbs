@@ -120,8 +120,8 @@ class RanknBonusController{
             if($person->get('id')!=0){
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
-            $transactionid = $transactionid->fetch_assoc()['LAST_INSERT_ID()'];
-            $play1 = new UserModel();
+            $transactionid = 10;//$transactionid->fetch_assoc()['LAST_INSERT_ID()'];
+            $play1 = new UsersModel();
             if(in_array($person->get('rank'),$eligible4pension)){
             $amount -= 0.07*$amount; 
             $penamount  = 0.05*$amount + (0.05*$amount* 0.2);
@@ -184,7 +184,7 @@ class RanknBonusController{
             //direct bonus
             if($father->get('id')!=0){
             if(in_array($father->get('rank'),$eligible4direct)){
-            pay($father, 0.20*$thisbv);
+            $this->pay($father, 0.20*$thisbv, 'Direct bonus');
             }
         }
             //indirect bonus
@@ -194,19 +194,19 @@ class RanknBonusController{
                 if(in_array($item->get('rank'),$eligible4indirect)){
                 switch ($x) {
                     case 0:
-                        pay($item, 0.1*$thisbv);
+                        pay($item, 0.1*$thisbv,'Indirect bonus');
                         break;
                     case 1:
-                        pay($item, 0.08*$thisbv);
+                        pay($item, 0.08*$thisbv,'Indirect bonus');
                          break;
                     case 2:
-                        pay($item, 0.05*$thisbv);
+                        pay($item, 0.05*$thisbv,'Indirect bonus');
                         break;
                     case 3:
-                        pay($item, 0.03*$thisbv);
+                        pay($item, 0.03*$thisbv,'Indirect bonus');
                         break;
                     case 4:
-                        pay($item, 0.02*$thisbv);
+                        pay($item, 0.02*$thisbv,'Indirect bonus');
                         break;
                     default:
                         break;

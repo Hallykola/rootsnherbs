@@ -22,22 +22,32 @@
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                 <?php if(isset($_SESSION['level'])){
                         if($_SESSION['level']>3){
-                            echo <<<EOD
+                            echo '
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    EOD;
+                    ';
                     }
                 }
                      ?>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <?php if(isset($_SESSION['level'])){
+                       <?php if(isset($_SESSION['level'])){
                         if($_SESSION['level']>2){
-                            echo <<<EOD
+                            echo '
+                    <li class="nav-item" role="presentation"><a class="nav-link " href="users"><i class="fas fa-user"></i><span>Users</span></a></li>
+                    ';
+                    }
+                }else{
+                    echo '<li class="nav-item" role="presentation"><a class="nav-link" href="profile"><i class="fas fa-user"></i><span>Profile</span></a></li>';
+                    
+                }
+                ?>
+                <?php if(isset($_SESSION['level'])){
+                        if($_SESSION['level']>2){
+                            echo '
                        
                     <li class="nav-item" role="presentation"><a class="nav-link" href="issuebv"><i class="fas fa-table"></i><span>Issue Bronze Value</span></a><a class="nav-link" href="rank"><i class="fas fa-table"></i><span>Rank</span></a><a class="nav-link" href="bonuses"><i class="fas fa-table"></i><span>Bonuses</span></a></li>
                     <li
                         class="nav-item" role="presentation"><a class="nav-link" href="login"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
-                   EOD;
+                   ';
                     }
                 }
                      ?>
