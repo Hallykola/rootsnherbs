@@ -214,10 +214,13 @@ include_once('header.php');
                             <div class="card-body">
                                 <h4 class="card-title">PAY BONUS</h4>
                                 <h6 class="text-muted card-subtitle mb-2">Pay bonus to user</h6>
-                                <form method = "POST">                                <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text">User ID</span></div><input class="form-control" type="text" name = "bonusuid">
-                                    <div class="input-group-append"></div>
-                                </div>
+                                <form method = "POST">
+                                <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">User ID</span></div><input class="form-control" placeholder=" Enter name to fetch ID" id = "search-box" name = "id" type="text">
+                                <div class="input-group-append"></div>
+                            </div>
+                            <div id="suggesstion-box"></div>                                
+                                
                                 <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text">Bonus Value</span></div><input class="form-control" type="text" name = "bonusvalue">
                                     <div class="input-group-append"></div>
