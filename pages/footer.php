@@ -38,7 +38,7 @@
             var name = $("#product").find('option:selected').text();
             var val = $("#product").val();
             
-            var markup = "<tr><td><input type='checkbox' name='record'></td><td class = 'desc' >" + name + "</td><td class = 'bv'>" + val + "</td></tr>";
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td class = 'desc' >" + name + "</td><td class = 'bv'>" + val + "</td><td><input type='number' name='quantity' class='quantity' onkeyup='work(this);' value= '1'></td><td class='amount'>"+val+"</td></tr>";
             $("table tbody:first").append(markup);
         });
         
@@ -53,7 +53,7 @@
     });
        $(".show").click(function(){
          var content = 0;
-            $("table tbody:first").find(".bv").each(function(){
+            $("table tbody:first").find(".amount").each(function(){
             	
                     content += Number($(this).text());
                 
@@ -62,12 +62,29 @@
             var content1 = "";
             $("table tbody:first").find(".desc").each(function(){
             	
-                    content1 += $(this).text()+' |';
+                   content1 += $(this).text()+ '-' +$(this).parent().find('.quantity').val() +' |';
                 
             });
             $("#usedesc").val(content1);
           
         });
+        function work(el){
+           
+            	var parent = el.parentElement.parentElement;
+                var bv = parent.querySelector('.bv').innerText;
+                var quantity = parent.querySelector('.quantity').value;
+                var amount = parent.querySelector('.amount').innerText;
+                parent.querySelector('.amount').innerText = bv*quantity;
+                
+           
+        }
+            
+            
+          
+       
+
+       
+
         </script>
 
         <script>

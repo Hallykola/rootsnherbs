@@ -103,6 +103,8 @@ include_once('header.php');
                 <th>Select</th>
                 <th>Products</th>
                 <th>BV</th>
+                <th>Quantity</th>
+                <th>BV for Product</th>
             </tr>
         </thead>
         <tbody>
