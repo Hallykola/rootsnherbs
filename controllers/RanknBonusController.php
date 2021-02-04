@@ -2,6 +2,7 @@
 include_once('./models/TransactionsModel.php');
 include_once('./models/UsersModel.php');
 include_once('./models/BonusesModel.php');
+include_once('./models/PensionsModel.php');
 include_once('./models/RanksModel.php');
 require 'vendor/autoload.php';
 
@@ -120,15 +121,18 @@ class RanknBonusController{
             if($person->get('id')!=0){
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
+            $pensionmaker = new PensionsModel();
             $transactionid = 10;//$transactionid->fetch_assoc()['LAST_INSERT_ID()'];
             $play1 = new UsersModel();
             if(in_array($person->get('rank'),$eligible4pension)){
             $amount -= 0.07*$amount; 
             $penamount  = 0.05*$amount + (0.05*$amount* 0.2);
             $bonusmaker->addBonus($person->get('name'),$person->get('id'),$amount, $transactionid,$description,'Pension deducted');
-            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$penamount, $transactionid,$description,'Pension');
+            $pensionmaker->addPension($person->get('name'),$person->get('id'),$penamount, date('F,Y'),$description,'Pension');
             
-            $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount+$penamount,$person->get('id'));
+            $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount,$person->get('id'));
+            $play1->updateUserItembyID ('pensionvalue','si',$person->get('pensionvalue')+$penamount,$person->get('id'));
+
             }else{
                 $amount -= 0.02*$amount;
             $bonusmaker->addBonus($person->get('name'),$person->get('id'),$amount, $transactionid,$description,'Pension not deducted');

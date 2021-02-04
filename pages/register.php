@@ -63,7 +63,7 @@ include_once('./controllers/RanknBonusController.php');
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-flex">
-                        <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;assets/img/dogs/image2.jpeg&quot;);"></div>
+                        <div class="flex-grow-1 bg-register-image" style="border:2px solid green;background-image: url(&quot;assets/img/dogs/logolarge.jpg&quot;);"></div>
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -74,8 +74,10 @@ include_once('./controllers/RanknBonusController.php');
                                 <div class="form-group"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Full Name" name="name" required></div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="Username" id = "username" onblur= "checkusername()" name="username" required></div>
-                                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Sponsor ID" name="sponsorid"></div>
+                                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Enter sponsor name to fetch id" id = "search-box" name="sponsorid"></div>
+                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box">hello</div>
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="Phone number" name="phone" required></div>
                                     <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Account Number" name="accountnumber" required></div>
@@ -139,11 +141,39 @@ include_once('./controllers/RanknBonusController.php');
             console.log(repass);
         }
     </script>
-    <script src="assets/js/jquery.min.js"></script>
+    
+
+   <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/script.min.js"></script>
+
+    <script>
+        // AJAX call for autocomplete 
+$(document).ready(function(){
+	$("#search-box").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "suggestusers",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#search-box").css("background","#FFF");
+		}
+		});
+	});
+});
+//To select user name
+function selectUser(val) {
+$("#search-box").val(val);
+$("#suggesstion-box").hide();
+}
+</script>
 </body>
 
 </html>

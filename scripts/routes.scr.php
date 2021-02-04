@@ -23,8 +23,20 @@ Routes::set('registeradmin', function(){
 Routes::set('register', function(){
     ControllerRoutes::RenderPage('register');
 });
-Routes::set('rank', function(){
-    ControllerRoutes::RenderPage('rank');
+Routes::set('fetchtree', function(){
+    ControllerRoutes::RenderPage('fetchtree');
+});
+Routes::set('paypensions', function(){
+    ControllerRoutes::RenderPage('paypensions');
+});
+Routes::set('paybonuses', function(){
+    ControllerRoutes::RenderPage('paybonuses');
+});
+Routes::set('pension', function(){
+    ControllerRoutes::RenderPage('pension');
+});
+Routes::set('level', function(){
+    ControllerRoutes::RenderPage('level');
 });
 Routes::set('dashboard', function(){
     ControllerRoutes::RenderPage('dashboard');

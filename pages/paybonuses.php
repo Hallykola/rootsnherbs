@@ -1,6 +1,7 @@
 <?php
 //session_start();
 include_once('./models/BonusesModel.php');
+include_once('./models/UsersModel.php');
 include_once('./models/ConstantsModel.php');
 
 
@@ -10,22 +11,13 @@ if(!isset($_SESSION["user"])){
     header('location: nopermission');
 }
 
-if (!isset($_POST['page'])){
-    $page = 1;  
-} else {  
-    $page = $_POST['page'];  
-}  
 
-$results_per_page = 10;  
-$page_first_result = ($page-1) * $results_per_page;  
+if(isset($_REQUEST['limit'])){
 
-$page_first_result = ($page-1) * $results_per_page;
-$bonuses = new BonusesModel();
-$result = $bonuses-> getAllBonuses();
-$number_of_result = mysqli_num_rows($result);  
-$somebonuses = $bonuses->getSomeBonuses($page_first_result,$results_per_page);
-//determine the total number of pages available  
-$number_of_page = ceil ($number_of_result / $results_per_page);
+$entitledusers = new UsersModel();
+$result = $entitledusers->getAllBonusesAbove($_REQUEST['limit']);
+}
+
 
 include_once('header.php');
 
@@ -34,15 +26,15 @@ $constants = new ConstantsModel();
 ?>
 
             <div class="container-fluid">
-                <h3 class="text-dark mb-4">Bonuses</h3>
+                <h3 class="text-dark mb-4">Pay Bonuses</h3>
                 <div class="card shadow">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Bonuses</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Display user entitlements in real time</h6>
+                            <h4 class="card-title">Pay Bonuses <?php if(isset($_REQUEST['limit'])){echo "above ".$_REQUEST['limit']. " Bonus Value";}?></h4>
+                            <h6 class="text-muted card-subtitle mb-2">Pay users and display list</h6>
                         </div>
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Bonuses List</p>
+                            <p class="text-primary m-0 font-weight-bold">Bonuses Payment List</p>
                         </div>
                     </div>
                     <div class="card-body">
@@ -58,28 +50,42 @@ $constants = new ConstantsModel();
                                     <tr>
                                         <th>id</th>
                                         <th>Name</th>
-                                        <th>user id</th>
                                         <th>Bonus Value</th>
                                         <th>Naira Value</th>
-                                        <th>Transaction ID</th>
-                                        <th>Description</th>
-                                        <th>Bonus Type</th>
-                                        <th>Date</th>
+                                       
+                                        <th>Status</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                        while ($row = mysqli_fetch_array($somebonuses)) { 
+                                        while ($row = mysqli_fetch_array($result)) { 
+                                            $paid = FALSE;
+                                            if(isset($_REQUEST['pay'])){
+                                                $userModel = new UsersModel();
+                                                $bonusmaker = new BonusesModel();
+                                                $user = $userModel->getUserbyrealID($row['id']);
+                                                $userdetail = $user->fetch_assoc();
+                                                $transactionid  = 10;
+                                                if($bonusmaker->addBonus($userdetail['name'],$userdetail['id'],-$userdetail['bonusvalue'], $transactionid,date('M,Y'),'Bonus Paid')==TRUE){
+                                                    $userModel->updateUserItembyID ('bonusvalue','si',$userdetail['bonusvalue']-$userdetail['bonusvalue'],$row['id']);
+                                                   
+                                                    $paid = TRUE;
+                                                }else{
+                                                    $paid = FALSE;
+                                                }
+                                            }
         echo "<tr><td>".$row['id']."</td>";
-        echo "<td><a class='nav-item' href = 'profile?id=".$row['userid']."'>".$row['name']."</a></td>"; 
-        echo "<td>".$row['userid']."</td>";  
+        echo "<td><a class='nav-item' href = 'profile?id=".$row['id']."'>".$row['name']."</a></td>"; 
         echo "<td>".$row['bonusvalue']."</td>"; 
         echo "<td> &#x20A6;".$row['bonusvalue']*$myconstantsbv."</td>";  
-        echo "<td>".$row['transactionid']."</td>";  
-        echo "<td>".$row['description']."</td>";  
-        echo "<td>".$row['bonustype']."</td>";  
-        echo "<td>".$row['time']."</td></tr>";  
+        
+        if ($paid){
+            echo "<td>PAID</td></tr>"; 
+        }else{
+            echo "<td>NOT PAID</td></tr>"; 
+
+        } 
 
           
         
@@ -96,22 +102,7 @@ $constants = new ConstantsModel();
                                <!-- <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p> -->
                             </div>
                             <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <form method = "POST">
-                                            <select name = "page" class="form-control" >
-         
-         
-         
-                                            <?php
-                                            for($page = 1; $page<= $number_of_page; $page++) {  
-    echo '<option value ="'.$page.'">' . $page . ' </option>'; } 
-    ?>
-    </select>
-    <input class="btn btn-primary" type="submit" name = "submit_1" value = "Go!">
-                                                        </form>
-                                            
-                                    </nav>
+                           
                             </div>
                         </div>
                     </div>

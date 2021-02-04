@@ -56,7 +56,9 @@ include_once('header.php');
                                         <th>Distributor Id</th>
                                         <th>Name</th>
                                         <th>username</th>
-                                        <th>Bronze Value</th>
+                                        <th>Business Value</th>
+                                        <th>Bonus Value</th>
+                                        <th>Pension Value</th>
                                         <th>Rank</th>
                                         <th>Time Registered</th>
                                     </tr>
@@ -67,7 +69,9 @@ include_once('header.php');
         echo "<tr><td>".$row['id']."</td>";
         echo "<td><a class='nav-item' href = 'profile?id=".$row['id']."'>".$row['name']."</a></td>"; 
         echo "<td>".$row['username']."</td>";  
-        echo "<td>".$row['bronzevalue']."</td>";  
+        echo "<td>".$row['bronzevalue']."</td>"; 
+        echo "<td>".$row['bonusvalue']."</td>"; 
+        echo "<td>".$row['pensionvalue']."</td>";  
         echo "<td>".$row['rank']."</td>";  
         echo "<td>".$row['dateregistered']."</td></tr>";  
 

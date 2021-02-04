@@ -121,7 +121,7 @@ include_once('header.php');
                 <div class="row mb-3">
                     <div class="col-lg-4">
                         <div class="card mb-3">
-                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="assets/img/dogs/image2.jpeg" width="160" height="160">
+                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="assets/img/dogs/logo.jpg" width="160" height="160">
                                <!-- <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Change Photo</button></div> -->
                             </div>
                         </div>
@@ -247,6 +247,32 @@ include_once('header.php');
                         </div>
                     </div>
                 </div>
+                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Level Structure</p>
+                                    </div>
+                                    <div class="card-body">
+                                   
+<div class="tree">
+    <?php include_once('fetchtree.php'); 
+    display($userid);
+    ?>
+    <!--
+We will create a family tree using just CSS(3)
+The markup will be simple nested lists
+-->
+<div class="tree">
+	
+</div>
+</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                
+                                
+                       
+                    
+               
                 <div class="card shadow mb-5">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 font-weight-bold">Bonuses</p>

@@ -1,6 +1,8 @@
 <?php
 //session_start();
-include_once('./models/RanksModel.php');
+include_once('./models/PensionsModel.php');
+include_once('./models/ConstantsModel.php');
+
 
 
 if(!isset($_SESSION["user"])){
@@ -19,25 +21,27 @@ $results_per_page = 10;
 $page_first_result = ($page-1) * $results_per_page;  
 
 $page_first_result = ($page-1) * $results_per_page;
-$ranks = new RanksModel();
-$result = $ranks-> getAllRanks();
+$pensions = new PensionsModel();
+$result = $pensions-> getAllPensions();
 $number_of_result = mysqli_num_rows($result);  
-$someranks = $ranks->getSomeRanks($page_first_result,$results_per_page);
+$somepensions = $pensions->getSomePensions($page_first_result,$results_per_page);
 //determine the total number of pages available  
 $number_of_page = ceil ($number_of_result / $results_per_page);
 
 include_once('header.php');
+$constants = new ConstantsModel();
+  $myconstantspv = $constants->getConstant ('pensionvalue')->fetch_assoc()['value'];
 ?>
             <div class="container-fluid">
-                <h3 class="text-dark mb-4">Ranks</h3>
+                <h3 class="text-dark mb-4">Pensions</h3>
                 <div class="card shadow">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Ranking Growth</h4>
-                            <h6 class="text-muted card-subtitle mb-2">User ranking updates</h6>
+                            <h4 class="card-title">Pension Statistics</h4>
+                            <h6 class="text-muted card-subtitle mb-2">Users pensions list</h6>
                         </div>
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Rank Growth List</p>
+                            <p class="text-primary m-0 font-weight-bold">Pension List</p>
                         </div>
                     </div>
                     <div class="card-body">
@@ -55,18 +59,20 @@ include_once('header.php');
                                     <tr>
                                         <th>id</th>
                                         <th>Name</th>
-                                        <th>Old Rank</th>
-                                        <th>New Rank</th>
+                                        <th>Pension Value</th>
+                                        <th>Naira Value</th>
+                                        <th>Description</th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                        while ($row = mysqli_fetch_array($someranks)) { 
+                                        while ($row = mysqli_fetch_array($somepensions)) { 
         echo "<tr><td>".$row['id']."</td>";
         echo "<td><a class='nav-item' href = 'profile?id=".$row['userid']."'>".$row['name']."</a></td>"; 
-        echo "<td>".$row['oldrank']."</td>";  
-        echo "<td>".$row['newrank']."</td>";  
+        echo "<td>".$row['pensionvalue']."</td>";  
+        echo "<td> &#x20A6;".$row['pensionvalue']*$myconstantspv."</td>";  
+        echo "<td>".$row['description']."</td>";  
         echo "<td>".$row['time']."</td>";  
 
           

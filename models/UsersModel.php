@@ -139,7 +139,32 @@ class UsersModel {
         $statement_putTransactions->close();
         $conn->close();
     }
-   
+    function getAllBonusesAbove ($value){
+        global $conn;
+        $sql_getTransactions = "SELECT * FROM `users` WHERE `bonusvalue` > ?";
+        $statement_getTransactions = $conn->prepare($sql_getTransactions);
+        $statement_getTransactions->bind_param("i",$value);
+        $statement_getTransactions->execute();
+        $allTransactions = $statement_getTransactions->get_result();
+    
+        return $allTransactions;
+        
+        $statement_getTransactions->close();
+        $conn->close();
+    }
+    function getAllPensionsAbove ($value){
+        global $conn;
+        $sql_getTransactions = "SELECT * FROM `users` WHERE `pensionvalue` > ?";
+        $statement_getTransactions = $conn->prepare($sql_getTransactions);
+        $statement_getTransactions->bind_param("i",$value);
+        $statement_getTransactions->execute();
+        $allTransactions = $statement_getTransactions->get_result();
+    
+        return $allTransactions;
+        
+        $statement_getTransactions->close();
+        $conn->close();
+    }
     function deleteUserbyID ($id){
         global $conn;
         $sql_putTransactions = "DELETE FROM `users` WHERE `id` = ''";

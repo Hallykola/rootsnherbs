@@ -4,6 +4,8 @@ include_once('./models/ProductsModel.php');
 include_once('./models/ManagersModel.php');
 include_once('./models/BonusesModel.php');
 include_once('./models/UsersModel.php');
+include_once('./models/ConstantsModel.php');
+
 
 
 if(!isset($_SESSION["user"])){
@@ -125,6 +127,35 @@ if(isset($_POST['submit_2'])) {
   
 
 }
+
+if(isset($_POST['submit_values'])) {
+    
+    if(isset($_POST['bonusvalue'])){
+      $bonusvalue = $_POST['bonusvalue'];
+      
+      }
+      if(isset($_POST['pensionvalue'])){
+      $pensionvalue = $_POST['pensionvalue'];
+      
+      }
+      if(!empty($bonusvalue)&&!empty($pensionvalue)){
+             $play1 = new ConstantsModel();
+          if($play1->updateConstant('bonusvalue','ds',$bonusvalue)==TRUE
+          && $play1->updateConstant('pensionvalue','ds',$pensionvalue)==TRUE ){
+              
+              $valuemssg = "Naira Value updated";
+              header('location: dashboard');
+          }else{
+              $valuemssg = " Something went wrong, could not update naira value";
+          }
+      }
+    
+  
+  }
+  $constants = new ConstantsModel();
+  $myconstantsbv = $constants->getConstant('bonusvalue')->fetch_assoc()['value'];
+  $myconstantspv = $constants->getConstant ('pensionvalue')->fetch_assoc()['value'];
+
 include_once('header.php');
 ?>
 
@@ -137,7 +168,7 @@ include_once('header.php');
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
                                     <div class="col mr-2">
-                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>PRODUCTS AND BRONZE VALUE</span></div>
+                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>PRODUCTS AND BUSINESS VALUE</span></div>
                                         <div class="text-dark font-weight-bold h5 mb-0"></div>
                                     </div>
                                     
@@ -164,14 +195,14 @@ include_once('header.php');
                     <div class="col-lg-7 col-xl-8">
                         <div class="card shadow mb-4">
                             <div class="card-body">
-                                <h4 class="card-title">Bronze Value &amp; Product</h4>
+                                <h4 class="card-title">Business Value &amp; Product</h4>
                                 <h6 class="text-muted card-subtitle mb-2">Assign BV to product</h6>
                                 <form method = "POST">                                <div class="input-group">
                                     <div class="input-group-prepend"><span class="input-group-text">Product Name</span></div><input class="form-control" type="text" name = "productname">
                                     <div class="input-group-append"></div>
                                 </div>
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text">Bronze Value</span></div><input class="form-control" type="text" name = "bronzevalue">
+                                    <div class="input-group-prepend"><span class="input-group-text">Business Value</span></div><input class="form-control" type="text" name = "bronzevalue">
                                     <div class="input-group-append"></div>
                                 </div>
                                 <div class="input-group">
@@ -236,8 +267,38 @@ include_once('header.php');
                             </div>
 
                         </div>
+                        <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Batch Payment</p>
+                                    </div>
+                                    <div class="card-body">
+                                    
+                                        <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><label>Pay All bonus above</label><input class="form-control form-control-user" type="number" step="0.01" value="1" placeholder="Enter Bonus Value limit" id="bonusvalue" name="bonusvalue" ></div>
+                                        <br/> 
+                                </div>
+                                <button id = "previewbonuses" class="btn btn-primary btn-sm" > PREVIEW </button>            <button id = "paybonuses" class="btn btn-primary btn-sm" > PAY BONUSES </button>
+
+                                
+                                
+                                        <div class="form-group row">
+                                    <div class="col-sm-6"><label>Pay all pension above</label><input class="form-control form-control-user" type="number" step="0.01" value="1" placeholder="Enter Pension Value limit" id="pensionvalue" name="pensionvalue" ></div>
+                                    <div class="col-sm-6"><label style="color:white">.</label><input class="form-control form-control-user" type="number" id="pvamount" placeholder="Enter amount to pay in Pension Value" name="pvamount" ></div>
+    
+                                    <br/>
+                                </div>
+                                <button id = "previewpensions" class="btn btn-primary btn-sm" > PREVIEW </button>            <button id = "paypensions" class="btn btn-primary btn-sm" > PAY PENSIONS </button>
+                                
+                                
+                                    </div>
+                                </div>
+                                <br/>
+                                
                     </div>
+
+                    
                     <div class="col-lg-5 col-xl-4">
+                        
                         <div class="card shadow mb-4">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0">Products and&nbsp; BVs</h6>
@@ -250,7 +311,7 @@ include_once('header.php');
                                         <tr>
                                             <th>id</th>
                                             <th>Product Name</th>
-                                            <th>Bronze Value</th>
+                                            <th>Business Value</th>
                                             <th>Description</th>
                                         </tr>
                                     </thead>
@@ -289,6 +350,27 @@ include_once('header.php');
                                     </nav>
                                </div>
                     </div>
+                    <br/>
+                    <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Monetary Value</p>
+                                    </div>
+                                    <div class="card-body">
+                                    <form method="POST">
+                                        <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><label>Value of 1 Bonus Value (in Naira)</label><input class="form-control form-control-user" type="number" step="0.01" value="<?php if(isset($myconstantsbv)){echo $myconstantsbv;} ?>" placeholder="BV" name="bonusvalue" ></div>
+                                    <div class="col-sm-6"><label>Value of 1 Pension Value (in Naira)</label><input class="form-control form-control-user" type="number" step="0.01" value="<?php if(isset($myconstantspv)){echo $myconstantspv;} ?>" placeholder="PV" name="pensionvalue" ></div>
+                                        <br/>
+                                </div>
+                                <input class="btn btn-primary btn-sm" name = "submit_values" value = "Update" type="submit">
+                                </form>
+                                <?php if(!empty($valuemssg)){
+                                    echo '<div class="text-center" style="color:green">'.$valuemssg.'</div>';
+                                    } ?>
+                                    </div>
+                                </div>
+                                <br/>
+
                 </div>
             </div>
             <div class="row">

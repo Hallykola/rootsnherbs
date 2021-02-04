@@ -3,16 +3,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include_once('./scripts/config.scr.php');
 
-class BonusesModel {
+class PensionsModel {
 
-    function addBonus($name,$userid,$bonusvalue,$transactionid,$description,$bonustype){
+    function addPension($name,$userid,$pensionvalue,$month,$description,$type){
         global $conn;
         
-        $sql_putTransactions = "INSERT INTO `bonuses`(`name`, `userid`,`bonusvalue`, `transactionid`, `description`, `bonustype`) VALUES (?,?,?,?,?,?)";
+        $sql_putTransactions = "INSERT INTO `pensions`(`name`, `userid`,`pensionvalue`, `month`, `description`, `type`) VALUES (?,?,?,?,?,?)";
 
         $statement_putTransactions = $conn->prepare($sql_putTransactions);
         echo $conn->error;
-        $statement_putTransactions->bind_param("siiiss",$name,$userid,$bonusvalue,$transactionid,$description,$bonustype);
+        $statement_putTransactions->bind_param("siisss",$name,$userid,$pensionvalue,$month,$description,$type);
         echo $conn->error;
         if($statement_putTransactions->execute()==TRUE){
             echo $conn->error;
@@ -27,9 +27,9 @@ class BonusesModel {
        
         $conn->close();
     }
-    function getBonusbyID ($id){
+    function getPensionbyID ($id){
         global $conn;
-        $sql_putTransactions = "SELECT * FROM `bonuses` WHERE `userid` = ? ";
+        $sql_putTransactions = "SELECT * FROM `pensions` WHERE `userid` = ? ";
         $statement_putTransactions = $conn->prepare($sql_putTransactions);
         $statement_putTransactions->bind_param("i",$id);
         echo $conn->error;
@@ -41,9 +41,9 @@ class BonusesModel {
         $statement_putTransactions->close();
         $conn->close();
     }
-    function getAllBonuses (){
+    function getAllPensions (){
         global $conn;
-        $sql_getTransactions = "SELECT * FROM `bonuses`";
+        $sql_getTransactions = "SELECT * FROM `pensions`";
         $statement_getTransactions = $conn->prepare($sql_getTransactions);
         $statement_getTransactions->execute();
         $allTransactions = $statement_getTransactions->get_result();
@@ -53,22 +53,9 @@ class BonusesModel {
         $statement_getTransactions->close();
         $conn->close();
     }
-    function getAllBonusesAbove ($value){
+    function getSomePensionsbyID ($id,$page_first_result,$results_per_page){
         global $conn;
-        $sql_getTransactions = "SELECT * FROM `bonuses` WHERE `bonusvalue` > ?";
-        $statement_getTransactions = $conn->prepare($sql_getTransactions);
-        $statement_getTransactions->bind_param("i",$value);
-        $statement_getTransactions->execute();
-        $allTransactions = $statement_getTransactions->get_result();
-    
-        return $allTransactions;
-        
-        $statement_getTransactions->close();
-        $conn->close();
-    }
-    function getSomeBonusesbyID ($id,$page_first_result,$results_per_page){
-        global $conn;
-        $sql_getTransactions = "SELECT * FROM bonuses WHERE `userid` = ? ORDER BY id DESC LIMIT  ?, ?";
+        $sql_getTransactions = "SELECT * FROM pensions WHERE `userid` = ? ORDER BY id DESC LIMIT  ?, ?";
         $statement_getTransactions = $conn->prepare($sql_getTransactions);
         $statement_getTransactions->bind_param("iii",$id,$page_first_result,$results_per_page);
         $statement_getTransactions->execute();
@@ -79,9 +66,9 @@ class BonusesModel {
         $statement_getTransactions->close();
         $conn->close();
     }
-    function getSomeBonuses ($page_first_result,$results_per_page){
+    function getSomePensions ($page_first_result,$results_per_page){
         global $conn;
-        $sql_getTransactions = "SELECT * FROM bonuses ORDER BY id DESC LIMIT  ?, ?";
+        $sql_getTransactions = "SELECT * FROM pensions ORDER BY id DESC LIMIT  ?, ?";
         $statement_getTransactions = $conn->prepare($sql_getTransactions);
         $statement_getTransactions->bind_param("ii",$page_first_result,$results_per_page);
         $statement_getTransactions->execute();
@@ -95,9 +82,9 @@ class BonusesModel {
     
     
 
-    function deleteProductbyID ($id){
+    function deletePensionbyID ($id){
         global $conn;
-        $sql_putTransactions = "DELETE FROM `products` WHERE `id` = '?'";
+        $sql_putTransactions = "DELETE FROM `pensions` WHERE `id` = '?'";
         $statement_putTransactions = $conn->prepare($sql_putTransactions);
         $statement_putTransactions->bind_param("i",$id);
         $statement_putTransactions->execute();

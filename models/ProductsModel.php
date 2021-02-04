@@ -25,20 +25,7 @@ class ProductsModel {
        
         $conn->close();
     }
-    function getManagerbyID ($username){
-        global $conn;
-        $sql_putTransactions = "SELECT * FROM `managers` WHERE `username`=?";
-        $statement_putTransactions = $conn->prepare($sql_putTransactions);
-        $statement_putTransactions->bind_param("s",$username);
-        echo $conn->error;
-        $statement_putTransactions->execute();
-        $allTransactions = $statement_putTransactions->get_result();
-    
-        return $allTransactions;
-        
-        $statement_putTransactions->close();
-        $conn->close();
-    }
+   
     function getSomeProducts ($page_first_result,$results_per_page){
         global $conn;
         $sql_getTransactions = "SELECT * FROM products ORDER BY id DESC LIMIT  ?, ?";
@@ -65,25 +52,7 @@ class ProductsModel {
         $conn->close();
     }
 
-    function updateManagerbyID ($id,$username,$name,$password,$role,$description){
-        global $conn;
-        $sql_putTransactions =
-        "UPDATE `managers` SET `username`=?,`name`=?,`password`=?,`role`=?,`description`=? WHERE `id` = '?'";
-        $statement_putTransactions = $conn->prepare($sql_putTransactions);
-        echo $conn->error;
-        $statement_putTransactions->bind_param("sssis",$username,$name,$password,$role,$description,$id);
-        $statement_putTransactions->execute();
-        if($statement_putTransactions->execute()==TRUE){
-           
-            echo "TRUE";
-        }else{
-            echo "FALSE";
-        }
-        
-        $statement_putTransactions->close();
-        $conn->close();
-    }
-
+    
     function deleteProductbyID ($id){
         global $conn;
         $sql_putTransactions = "DELETE FROM `products` WHERE `id` = '?'";

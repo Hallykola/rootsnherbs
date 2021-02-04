@@ -72,11 +72,11 @@ include_once('header.php');
 ?>
 
             <div class="container-fluid">
-                <h3 class="text-dark mb-4">Issue Bronze Value</h3>
+                <h3 class="text-dark mb-4">Issue Business Value</h3>
                 <div class="card shadow">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Give Bronze value</h4>
+                            <h4 class="card-title">Give Business value</h4>
                             <h6 class="text-muted card-subtitle mb-2">Assign BV to user</h6>
                             <form>
         <div>
@@ -120,7 +120,7 @@ include_once('header.php');
                             </div>
                             <div id="suggesstion-box"></div>
                             <div class="input-group">
-                                <div class="input-group-prepend"><span class="input-group-text">Bronze Value</span></div><input class="form-control" id = "usebv" name = "bv"  type="text">
+                                <div class="input-group-prepend"><span class="input-group-text">Business Value</span></div><input class="form-control" id = "usebv" name = "bv"  type="text">
                                 <div class="input-group-append"></div>
                             </div>
                             <div class="input-group">
@@ -135,7 +135,7 @@ include_once('header.php');
                                     } ?>
                         </div>
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Bronze Value List</p>
+                            <p class="text-primary m-0 font-weight-bold">Business Value List</p>
                         </div>
                     </div>
                     <div class="card-body">

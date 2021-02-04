@@ -86,6 +86,7 @@
        
 
         </script>
+       
 
         <script>
         // AJAX call for autocomplete 
@@ -111,6 +112,31 @@ function selectUser(val) {
 $("#search-box").val(val);
 $("#suggesstion-box").hide();
 }
+</script>
+
+<script type="text/javascript">
+    document.getElementById("previewpensions").onclick = function () {
+        var x = document.getElementById("pensionvalue").value;
+        location.href = "paypensions?limit="+x;
+    };
+    document.getElementById("paypensions").onclick = function () {
+        var x = document.getElementById("pensionvalue").value;
+        var amount = document.getElementById("pvamount").value;
+        if(amount.length == 0){
+            amount = 0;
+        }
+        location.href = "paypensions?limit="+x+"&pay=1"+"&amount="+amount;
+    };
+
+    document.getElementById("previewbonuses").onclick = function () {
+        var x = document.getElementById("bonusvalue").value;
+        window.location.href = "paybonuses?limit="+x;
+    };
+    document.getElementById("paybonuses").onclick = function () {
+        var x = document.getElementById("bonusvalue").value;
+        
+        window.location.href = "paybonuses?limit="+x+"&pay=1";
+    };
 </script>
 </body>
 

@@ -1,7 +1,6 @@
 <?php
 //session_start();
-include_once('./models/BonusesModel.php');
-include_once('./models/ConstantsModel.php');
+include_once('./models/RanksModel.php');
 
 
 if(!isset($_SESSION["user"])){
@@ -20,29 +19,25 @@ $results_per_page = 10;
 $page_first_result = ($page-1) * $results_per_page;  
 
 $page_first_result = ($page-1) * $results_per_page;
-$bonuses = new BonusesModel();
-$result = $bonuses-> getAllBonuses();
+$ranks = new RanksModel();
+$result = $ranks-> getAllRanks();
 $number_of_result = mysqli_num_rows($result);  
-$somebonuses = $bonuses->getSomeBonuses($page_first_result,$results_per_page);
+$someranks = $ranks->getSomeRanks($page_first_result,$results_per_page);
 //determine the total number of pages available  
 $number_of_page = ceil ($number_of_result / $results_per_page);
 
 include_once('header.php');
-
-$constants = new ConstantsModel();
-  $myconstantsbv = $constants->getConstant('bonusvalue')->fetch_assoc()['value'];
 ?>
-
             <div class="container-fluid">
-                <h3 class="text-dark mb-4">Bonuses</h3>
+                <h3 class="text-dark mb-4">Level</h3>
                 <div class="card shadow">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Bonuses</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Display user entitlements in real time</h6>
+                            <h4 class="card-title">Level Growth</h4>
+                            <h6 class="text-muted card-subtitle mb-2">Users level updates</h6>
                         </div>
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Bonuses List</p>
+                            <p class="text-primary m-0 font-weight-bold">Level Growth List</p>
                         </div>
                     </div>
                     <div class="card-body">
@@ -58,37 +53,27 @@ $constants = new ConstantsModel();
                                     <tr>
                                         <th>id</th>
                                         <th>Name</th>
-                                        <th>user id</th>
-                                        <th>Bonus Value</th>
-                                        <th>Naira Value</th>
-                                        <th>Transaction ID</th>
-                                        <th>Description</th>
-                                        <th>Bonus Type</th>
+                                        <th>Old Level</th>
+                                        <th>New Level</th>
                                         <th>Date</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                        while ($row = mysqli_fetch_array($somebonuses)) { 
+                                        while ($row = mysqli_fetch_array($someranks)) { 
         echo "<tr><td>".$row['id']."</td>";
         echo "<td><a class='nav-item' href = 'profile?id=".$row['userid']."'>".$row['name']."</a></td>"; 
-        echo "<td>".$row['userid']."</td>";  
-        echo "<td>".$row['bonusvalue']."</td>"; 
-        echo "<td> &#x20A6;".$row['bonusvalue']*$myconstantsbv."</td>";  
-        echo "<td>".$row['transactionid']."</td>";  
-        echo "<td>".$row['description']."</td>";  
-        echo "<td>".$row['bonustype']."</td>";  
-        echo "<td>".$row['time']."</td></tr>";  
+        echo "<td>".$row['oldrank']."</td>";  
+        echo "<td>".$row['newrank']."</td>";  
+        echo "<td>".$row['time']."</td>";  
 
           
         
            }  
             ?>
-                                </tbody>
-                                <tfoot>
                                    
-                                </tfoot>
+                                </tbody>
+                                   
                             </table>
                         </div>
                         <div class="row">
