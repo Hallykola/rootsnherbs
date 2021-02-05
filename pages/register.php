@@ -75,7 +75,7 @@ include_once('./controllers/RanknBonusController.php');
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="Username" id = "username" onblur= "checkusername()" name="username" required></div>
                                     <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Enter sponsor name to fetch id" id = "search-box" name="sponsorid"></div>
-                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box">hello</div>
+                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box"></div>
                                 </div>
 
                                 <div class="form-group row">
@@ -126,8 +126,28 @@ include_once('./controllers/RanknBonusController.php');
             let repass = document.getElementById('re-password').value;
             let reply = document.getElementById('password-reply');
             let button = document.getElementById('submit-btn');
-            if (pass.length < 6 ) {
+            let lowercase = /[a-z]/;
+            let uppercase = /[A-Z]/;
+            let num = /[\d]/;
+            let symbol = /[^a-zA-Z0-9]/;
+            let tlower = lowercase.test(pass);
+            let tupper = uppercase.test(pass);
+            let tnum = num.test(pass);
+            let tsymbol = symbol.test(pass);
+            if (pass.length < 8 ) {
                 reply.innerHTML = 'password is too short';
+                reply.style.color = 'red';
+            } else if (tlower == false){
+                reply.innerHTML = 'password must contain at least one lowwer case';
+                reply.style.color = 'red';
+            } else if (tupper == false){
+                reply.innerHTML = 'password must contain at least one upper case';
+                reply.style.color = 'red';
+            } else if (tnum == false){
+                reply.innerHTML = 'password must contain at least one number';
+                reply.style.color = 'red';
+            } else if (tsymbol == false){
+                reply.innerHTML = 'password must contain at least one symbol';
                 reply.style.color = 'red';
             } else if (pass === repass & pass != '' ) {
                 reply.innerHTML = 'password match';   
@@ -137,8 +157,8 @@ include_once('./controllers/RanknBonusController.php');
                 reply.innerHTML = 'password does not match';
                 reply.style.color = 'red';
             }
-            console.log(pass);
-            console.log(repass);
+            // console.log(pass);
+            // console.log(repass);
         }
     </script>
     
