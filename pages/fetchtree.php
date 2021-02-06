@@ -13,7 +13,7 @@ require 'vendor/autoload.php';
     function show($a){
         echo "<ul>";
         echo '<li>';
-        echo "<a href = '/profile?id=".$a->get('id')."'>".$a->get('id')." ".$a->get('name')."</a>";
+        echo "<a href = '/profile?id=".$a->get('id')."'>".$a->get('id')." ".$a->get('name')." (".$a->get('bronzevalue')." BV )</a>";
         
 
         $b = getChildren($a);
@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
         
     foreach ($b as $item){
             echo '<li>';
-            echo "<a href = '/profile?id=".$item->get('id')."'>".$item->get('id')." ".$item->get('name')."</a>";
+            echo "<a href = '/profile?id=".$item->get('id')."'>".$item->get('id')." ".$item->get('name')." (".$item->get('bronzevalue')." BV )</a>";
             
             if ($item->hasChildren()){
                 //echo "<ul>";
@@ -48,7 +48,7 @@ require 'vendor/autoload.php';
 function display($id){
     $usermodel = new UsersModel();
 
-    $userid =$id; // $_POST["id"];
+    $userid = $id; // $_POST["id"];
     $play1 = new UsersModel();
     $allusers = $play1->getAllUsers();
     $tree = new BlueM\Tree($allusers);

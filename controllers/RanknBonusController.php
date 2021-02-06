@@ -7,7 +7,7 @@ include_once('./models/RanksModel.php');
 require 'vendor/autoload.php';
 
 class RanknBonusController{
-
+    
     function rankin($myrank,$ranks){
         $x = 0;
         foreach($ranks as $item){
@@ -40,6 +40,7 @@ class RanknBonusController{
         return $z;
     }
     function grade($userid){
+            $jjc = FALSE;
             $play1 = new UsersModel();
             $allusers = $play1->getAllUsers();
             $tree = new BlueM\Tree($allusers);
@@ -74,10 +75,10 @@ class RanknBonusController{
     // grading logic
 
       $level = "none";
-      if($chairmanbv>=100){
+      if($item->get('bronzevalue') >=100){
           $level = "BRONZE";
       }
-      if($chairmanbv>=300){
+      if($item->get('bronzevalue') >=300){
           $level = "SAPPHIRE" ;
       }
       if(($childrencount>=4 && $this->eachmorethan($bvbychild, 300)>=4)||($childrencount>=3 && $this->eachmorethan($bvbychild, 500)>3)){
@@ -107,17 +108,29 @@ class RanknBonusController{
     }
 
     // save/update level in users table
-    if(strtoupper($item->get('rank'))!=strtoupper($level)){ 
+    if(strtoupper($item->get('rank'))!=strtoupper($level)){
+        
     $play1->updateUserItembyID ('rank','si',$level,$item->get('id'));
     $ranker = new RanksModel();
     $ranker->addRank($item->get('name'), $item->get('id') ,$item->get('rank') , $level);      
+    //pay first time direct bonus to new sapphires (>300bv)  
+    if(strtoupper($level)=='SAPPHIRE'){
+        $this->pay($item,0.20*$item->get('bronzevalue'), 'First time Direct bonus');
+        $jjc = TRUE ;
     }
+}
             }
         }
-
+        return $jjc;
         }
 
         function pay($person, $amount, $description){
+            $famount = number_format($amount - 0.02*$amount, 2); //remove bank charges
+            $penamount = number_format($famount* 0.05, 2);  //user pension contribution
+            $compenamount = number_format($penamount* 0.20, 2); //company pension addition
+            $totalpension = number_format($penamount + $compenamount, 2); //company plus user
+            $nonpensioneramount = $famount;
+            $pensioneramount = number_format($famount - $penamount, 2); //charges and pension removed
             if($person->get('id')!=0){
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
@@ -125,18 +138,20 @@ class RanknBonusController{
             $transactionid = 10;//$transactionid->fetch_assoc()['LAST_INSERT_ID()'];
             $play1 = new UsersModel();
             if(in_array($person->get('rank'),$eligible4pension)){
-            $amount -= 0.07*$amount; 
-            $penamount  = 0.05*$amount + (0.05*$amount* 0.2);
-            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$amount, $transactionid,$description,'Pension deducted');
-            $pensionmaker->addPension($person->get('name'),$person->get('id'),$penamount, date('F,Y'),$description,'Pension');
+            //$amount -= 0.07*$amount; 
+            //$penamount  = 0.05*$amount + (0.05*$amount* 0.2);
+            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$pensioneramount, $transactionid,$description,'Pension deducted');
+            $pensionmaker->addPension($person->get('name'),$person->get('id'),$totalpension, date('F,Y'),$description,'Pension');
             
-            $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount,$person->get('id'));
-            $play1->updateUserItembyID ('pensionvalue','si',$person->get('pensionvalue')+$penamount,$person->get('id'));
+            $play1->updateUserItembyID ('bonusvalue','di',$person->get('bonusvalue')+$pensioneramount,$person->get('id'));
+            $play1->updateUserItembyID ('pensionvalue','di',$person->get('pensionvalue')+$totalpension,$person->get('id'));
 
             }else{
-                $amount -= 0.02*$amount;
-            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$amount, $transactionid,$description,'Pension not deducted');
-            $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount,$person->get('id'));
+               
+                //$amount -= 0.02*$amount;
+                //print $amount;
+            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$nonpensioneramount, $transactionid,$description,'Pension not deducted');
+            $play1->updateUserItembyID ('bonusvalue','di',$person->get('bonusvalue')+$nonpensioneramount,$person->get('id'));
                
             }
         }
@@ -150,29 +165,10 @@ class RanknBonusController{
             $eligible4pension = array('SAPPHIRE','RUBY','SILVER','DIAMOND','GOLD','GENERAL','ONE STAR GENERAL','TWO STAR GENERAL','THREE STAR GENERAL');
             $bonusmaker = new BonusesModel();
             $transactionid = 12;
-            if($person->get('id')!=0){
-            if(in_array($person->get('rank'),$eligible4pension)){
-            $amount -= 0.07*$amount; 
-            $penamount  = 0.05*$amount + (0.05*$amount* 0.2);
-            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$amount, $transactionid,$description,'Pension deducted bonus');
-            $bonusmaker->addBonus($person->get('name'),$person->get('id'),$penamount, $transactionid,$description,'Pension from registration bonus');
-            $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount+$penamount,$person->get('id'));
-
-            }else{
-                $amount -= 0.02*$amount;
-                
-            if($bonusmaker->addBonus($person->get('name'),$sponsor,$amount, $transactionid,$description,'Not eligible for Pension')){
-                $play1->updateUserItembyID ('bonusvalue','si',$person->get('bonusvalue')+$amount,$person->get('id'));
-                // echo 'done';
-            }else{
-                //echo 'couldnt do it';
-            }
-                
-            }
-        }
+            $this->pay($person, $amount, $description);
         }
 
-        function paybonuses($userid,$thisbv){
+        function paybonuses($userid,$thisbv,$jjc){
             $play1 = new UsersModel();
             $allusers = $play1->getAllUsers();
             $tree = new BlueM\Tree($allusers);
@@ -186,11 +182,13 @@ class RanknBonusController{
 
             
             //direct bonus
-            if($father->get('id')!=0){
-            if(in_array($father->get('rank'),$eligible4direct)){
-            $this->pay($father, 0.20*$thisbv, 'Direct bonus');
+            if (!$jjc){
+            if($node->get('id')!=0){
+            if(in_array($node->get('rank'),$eligible4direct)){
+            $this->pay($node, number_format(0.20*$thisbv), 'Direct bonus');
             }
         }
+    }
             //indirect bonus
             $x = 0;
             foreach ($ancestors as $item){

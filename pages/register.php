@@ -75,7 +75,7 @@ include_once('./controllers/RanknBonusController.php');
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" placeholder="Username" id = "username" onblur= "checkusername()" name="username" required></div>
                                     <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="Enter sponsor name to fetch id" id = "search-box" name="sponsorid"></div>
-                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box">hello</div>
+                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box"></div>
                                 </div>
 
                                 <div class="form-group row">

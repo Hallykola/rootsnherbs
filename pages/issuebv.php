@@ -58,8 +58,8 @@ if(isset($_POST['id'])){
             $play1->updateUserItembyID ('bronzevalue','ii',$newbv,$userid);
             $testy = new RanknBonusController();
             //grade new bv earner and ancestors
-            $testy->grade($userid);
-            $testy->paybonuses($userid,$newbv);
+            $feedback = $testy->grade($userid);
+            $testy->paybonuses($userid,$thisbv,$feedback);
             $mssg = " BV added";
             header('location: issuebv');
 

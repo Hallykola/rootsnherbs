@@ -20,7 +20,8 @@ if ($_POST['sponsorid'] == '') {
     $parent = 0;
 } else {
     $sponsor = $_POST['sponsorid'];
-    $parent = null;
+    //this parent variable is zamorra, the sponsor variable isnt
+    $parent = $_POST['sponsorid'];
 }
 
 print_r($_POST);

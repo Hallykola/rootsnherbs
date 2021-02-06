@@ -62,8 +62,9 @@ if(isset($_POST['submit_password'])) {
                                     
                                     <?php if($_SESSION["level"]>3){
                                     echo '<div class="form-group row">
-                                    <label for="userid"><strong>User ID</strong></label><input class="form-control form-control-user" type="name" id="userid" placeholder="User ID" name="userid"  required>
-                                    </div>';
+                                    <label for="userid"><strong>User ID</strong></label><input class="form-control form-control-user" type="name" id="userid" placeholder="User ID" name="userid" id = "search-box" required>
+                                    </div>
+                                    <div></div> <div style="clear:both;float:right" id="suggesstion-box"></div>';
                                     }else{
                                         echo '<div class="form-group row">
                                         <input class="form-control form-control-user" type="hidden" id="userid" placeholder="User ID" name="userid" value="'.$_SESSION["id"] .' " required>
