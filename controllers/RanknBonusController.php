@@ -75,38 +75,67 @@ class RanknBonusController{
     // grading logic
 
       $level = "none";
-      if($item->get('bronzevalue') >=100){
-          $level = "BRONZE";
+      switch (0){
+          case 0:
+            if($item->get('bronzevalue') >=100){
+                $level = "BRONZE";
+            }else{
+                break;
+            }
+        case 1:
+            if($item->get('bronzevalue') >=300){
+                $level = "SAPPHIRE" ;
+            }else{
+                break;
+            }
+        case 2:
+            if(($childrencount>=4 && $this->eachmorethan($bvbychild, 300)>=4)||($childrencount>=3 && $this->eachmorethan($bvbychild, 500)>=3)){
+                $level = "RUBY" ;
+            }else{
+                break;
+            }
+        case 3:
+            if(($this->rankin("RUBY",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=4800)||($this->rankin("RUBY",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=9600)){
+                $level = "SILVER" ;
+            }else{
+                break;
+            }
+        case 4:
+            if(($this->rankin("SILVER",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=19200)||($this->rankin("SILVER",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=38400)){
+                $level = "DIAMOND" ;
+            }else{
+                break;
+            }
+        case 5:
+            if(($this->rankin("DIAMOND",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=76000)){
+                $level = "GOLD" ;
+            }else{
+                break;
+            }
+        case 6:
+            if(($this->rankin("GOLD",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=307200)){
+                $level = "GENERAL" ;
+            }else{
+                break;
+            }
+        case 7:
+            if(($this->rankin("GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=1200000)){
+                $level = "ONE STAR GENERAL" ;
+            }else{
+                break;
+            }
+        case 8:
+            if(($this->rankin("ONE STAR GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=4900000)){
+                $level = "TWO STAR GENERAL" ;
+            }else{
+                break;
+            }
+        case 9:
+            if(($this->rankin("TWO STAR GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=19000000)){
+                $level = "THREE STAR GENERAL" ;
+            }
       }
-      if($item->get('bronzevalue') >=300){
-          $level = "SAPPHIRE" ;
-      }
-      if(($childrencount>=4 && $this->eachmorethan($bvbychild, 300)>=4)||($childrencount>=3 && $this->eachmorethan($bvbychild, 500)>3)){
-        $level = "RUBY" ;
-    }
-
-    if(($this->rankin("RUBY",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=4800)||($this->rankin("RUBY",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=9600)){
-        $level = "SILVER" ;
-    }
-    if(($this->rankin("SILVER",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=19200)||($this->rankin("SILVER",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=38400)){
-        $level = "DIAMOND" ;
-    }
-    if(($this->rankin("DIAMOND",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=76000)){
-        $level = "GOLD" ;
-    }
-    if(($this->rankin("GOLD",$ranksbychild)>=4 && $this->totalbv($bvbychild)>=307200)){
-        $level = "GENERAL" ;
-    }
-    if(($this->rankin("GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=1200000)){
-        $level = "ONE STAR GENERAL" ;
-    }
-    if(($this->rankin("ONE STAR GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=4900000)){
-        $level = "TWO STAR GENERAL" ;
-    }
-    if(($this->rankin("TWO STAR GENERAL",$ranksbychild)>=3 && $this->totalbv($bvbychild)>=19000000)){
-        $level = "THREE STAR GENERAL" ;
-    }
-
+      
     // save/update level in users table
     if(strtoupper($item->get('rank'))!=strtoupper($level)){
         
@@ -196,19 +225,19 @@ class RanknBonusController{
                 if(in_array($item->get('rank'),$eligible4indirect)){
                 switch ($x) {
                     case 0:
-                        pay($item, 0.1*$thisbv,'Indirect bonus');
+                        $this->pay($item, number_format(0.1*$thisbv, 2),'1st Gen. Indirect bonus');
                         break;
                     case 1:
-                        pay($item, 0.08*$thisbv,'Indirect bonus');
+                        $this->pay($item,number_format( 0.08*$thisbv, 2),'2nd Gen. Indirect bonus');
                          break;
                     case 2:
-                        pay($item, 0.05*$thisbv,'Indirect bonus');
+                        $this->pay($item,number_format( 0.05*$thisbv, 2),'3rd Gen. Indirect bonus');
                         break;
                     case 3:
-                        pay($item, 0.03*$thisbv,'Indirect bonus');
+                        $this->pay($item, number_format(0.03*$thisbv, 2),'4th Gen. Indirect bonus');
                         break;
                     case 4:
-                        pay($item, 0.02*$thisbv,'Indirect bonus');
+                        $this->pay($item, number_format(0.02*$thisbv, 2),'5th Gen. Indirect bonus');
                         break;
                     default:
                         break;

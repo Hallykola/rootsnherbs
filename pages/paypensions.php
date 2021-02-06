@@ -1,8 +1,10 @@
 <?php
 //session_start();
+ob_start();
 include_once('./models/PensionsModel.php');
 include_once('./models/UsersModel.php');
 include_once('./models/ConstantsModel.php');
+require 'vendor/autoload.php';
 
 
 if(!isset($_SESSION["user"])){
@@ -117,4 +119,8 @@ $constants = new ConstantsModel();
             </div>
 <?php
 include_once('footer.php');
+$html=ob_get_clean();
+ $mpdf = new \Mpdf\Mpdf();
+ $mpdf->WriteHTML($html);
+$mpdf->Output();
 ?>
