@@ -10,6 +10,7 @@ if(!isset($_SESSION["user"])){
     header('location: users');
 }
 
+
 $play1 = new UsersModel();
 if(isset($_SESSION['id'])){
     $id = $_SESSION['id'];
@@ -23,7 +24,15 @@ if(isset($_REQUEST['id'])){
     }else{
     $userid = $id;   
     }
-    
+
+//prevent non-admin from viewing other poeple's profile
+if(isset($_REQUEST['id'])){
+    if($_SESSION['level']<3){
+    $userid = $_SESSION['id'];
+    }else{
+    $userid =$_REQUEST['id'];  
+    }
+}
 $user = $play1->getUserbyrealID($userid);
 $thisuser = $user->fetch_assoc();
 
@@ -140,7 +149,7 @@ include_once('header.php');
                                         <p class="text-primary m-0 font-weight-bold">Bronze Value</p>
                                     </div>
                                     <div class="card-body">
-                                        <h3 class = "text-success"><?php echo $thisuser['bronzevalue']; ?></h3>
+                                        <h3  style="color:rgb(46, 139, 87)"><?php echo $thisuser['bronzevalue']; ?></h3>
                                     </div>
                                 </div>
                                 <br/>
@@ -153,6 +162,8 @@ include_once('header.php');
                                         <h3 class = "text-success"><?php echo $thisuser['bonusvalue']; ?></h3>
                                     </div>
                                 </div>
+                                <br/>
+                              
                     </div>
                     <div class="col-lg-8">
                         <div class="row mb-3 d-none">
@@ -240,7 +251,17 @@ include_once('header.php');
                                     } ?>
                                     </div>
                                 </div>
-                                <hr>
+                                    <br/>
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Pension Value</p>
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <h3  style="color:rgb(128, 0, 128)"><?php echo $thisuser['pensionvalue']; ?></h3>
+                                    </div>
+                                </div>
+                               
                                 
                                 
                             </div>

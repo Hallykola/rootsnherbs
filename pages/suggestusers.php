@@ -13,8 +13,7 @@ if(!empty($result)) {
 <?php
 foreach($result as $user) {
 ?>
-<li class="list-inline-item border rounded" style="width: fit-content;background-color: #bec1ca; color: black;" onClick="selectUser('<?php echo $user["id"]; ?>');">
-<span>Username: <?php echo($user['username']) ?></span><br><span>Full-name: <?php echo($user['name']) ?></span>
+<li style="color:blue" onClick="selectUser('<?php echo $user["id"]; ?>');"><?php echo $user["name"]." | ".$user["username"]." | userID: ".$user["id"]." | Current BV: ".$user["bronzevalue"]." | Current Bonus: ".$user["bonusvalue"]; ?></li>
 </li>
 <?php } ?>
 </ul>
