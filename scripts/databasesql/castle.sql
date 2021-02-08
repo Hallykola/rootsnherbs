@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 04, 2021 at 03:51 PM
+-- Generation Time: Feb 08, 2021 at 08:46 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.3.21
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `bonuses` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `Bonuses link to transaction` (`transactionid`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bonuses`
@@ -90,7 +90,69 @@ INSERT INTO `bonuses` (`id`, `name`, `userid`, `bonusvalue`, `transactionid`, `d
 (55, 'DADA STEPHEN OMOBOLAJI', 11, -345, 10, 'Feb,2021', 'Bonus Paid', '2021-02-04 09:52:36'),
 (56, 'RAHEEM ABDULQUADIR OPEYEMI', 12, -456, 10, 'Feb,2021', 'Bonus Paid', '2021-02-04 09:53:58'),
 (57, 'YUSUF JAMIU AYODEJI', 13, -25, 10, 'Feb,2021', 'Bonus Paid', '2021-02-04 09:53:58'),
-(58, 'UDOH UKARABONG LERI', 14, -678, 10, 'Feb,2021', 'Bonus Paid', '2021-02-04 09:53:58');
+(58, 'UDOH UKARABONG LERI', 14, -678, 10, 'Feb,2021', 'Bonus Paid', '2021-02-04 09:53:58'),
+(59, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 1960, 10, 'JEMENI CHINONSO EMMANUEL\'s Registration', 'Pension not deducted', '2021-02-06 12:41:45'),
+(60, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 1960, 10, 'UDOYE EKENE PAUL\'s Registration', 'Pension not deducted', '2021-02-06 12:44:41'),
+(61, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 1860, 10, 'BALOGUN GAFAR OLABIWONU\'s Registration', 'Pension deducted', '2021-02-06 12:47:42'),
+(62, 'JEMENI CHINONSO EMMANUEL', 19, 78, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 13:19:16'),
+(63, 'JEMENI CHINONSO EMMANUEL', 19, 74, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 13:19:16'),
+(64, 'JEMENI CHINONSO EMMANUEL', 19, 102, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 13:19:29'),
+(65, 'Haliru', 2, 484, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 13:36:45'),
+(66, 'JEMENI CHINONSO EMMANUEL', 19, 139, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 13:36:45'),
+(67, 'JEMENI CHINONSO EMMANUEL', 19, 158, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 13:44:09'),
+(68, 'GARBA OCHAYAN PEACE ', 18, 117, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 13:45:04'),
+(69, 'GARBA OCHAYAN PEACE ', 18, 111, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 13:45:04'),
+(70, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:09:35'),
+(71, 'JEMENI CHINONSO EMMANUEL', 19, 58, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 14:12:27'),
+(72, 'JEMENI CHINONSO EMMANUEL', 19, 27, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:18:17'),
+(73, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:20:39'),
+(74, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:38:28'),
+(75, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:41:56'),
+(76, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:43:36'),
+(77, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:44:51'),
+(78, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:46:08'),
+(79, 'Haliru', 2, -484, 10, 'Feb,2021', 'Bonus Paid', '2021-02-06 14:48:42'),
+(80, 'SHIFATU AMINAT OLUWADAMILOLA', 17, -5780, 10, 'Feb,2021', 'Bonus Paid', '2021-02-06 14:48:42'),
+(81, 'GARBA OCHAYAN PEACE ', 18, -230, 10, 'Feb,2021', 'Bonus Paid', '2021-02-06 14:48:42'),
+(82, 'JEMENI CHINONSO EMMANUEL', 19, -772, 10, 'Feb,2021', 'Bonus Paid', '2021-02-06 14:48:42'),
+(83, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:51:58'),
+(84, 'UDOYE EKENE PAUL', 20, 176, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 14:55:07'),
+(85, 'UDOYE EKENE PAUL', 20, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 14:56:02'),
+(86, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 15:11:47'),
+(87, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 15:17:08'),
+(88, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:05:05'),
+(89, 'JEMENI CHINONSO EMMANUEL', 19, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:06:45'),
+(90, 'UDOH UKARABONG LERI', 14, 1662, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 16:10:05'),
+(91, 'UDOH UKARABONG LERI', 14, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:19:01'),
+(92, 'YUSUF JAMIU AYODEJI', 13, 58, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 16:22:09'),
+(93, 'BALOGUN GAFAR OLABIWONU', 21, 58, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 16:23:11'),
+(94, 'BALOGUN GAFAR OLABIWONU', 21, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:23:35'),
+(95, 'GARBA OCHAYAN PEACE ', 18, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:53:28'),
+(96, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 16:54:24'),
+(97, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 17:00:54'),
+(98, 'GAFAR YUSUF', 16, 196, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 17:04:39'),
+(99, 'GAFAR YUSUF', 16, 186, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 17:05:55'),
+(100, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 93, 10, '1st Gen. Indirect bonus', 'Pension deducted', '2021-02-06 17:05:55'),
+(101, 'GAFAR YUSUF', 16, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 17:20:37'),
+(102, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 18, 10, 'Direct bonus', 'Pension deducted', '2021-02-06 17:23:17'),
+(103, 'Lateef Yusuf', 3, 180, 10, 'First time Direct bonus', 'Pension not deducted', '2021-02-06 18:13:25'),
+(104, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 9, 10, 'Direct bonus', 'Pension deducted', '2021-02-08 10:41:48'),
+(105, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 4, 10, '1st Gen. Indirect bonus', 'Pension deducted', '2021-02-08 10:41:48'),
+(106, 'Kareem Yusuf', 6, 111, 10, 'First time Direct bonus', 'Pension deducted', '2021-02-08 16:02:36'),
+(107, 'Lateef Yusuf', 3, -180, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(108, 'Kareem Yusuf', 6, -145, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(109, 'Lateef Yusuf', 7, -345678, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(110, 'ABIOLA ISRAEL ENIOLA', 10, -1256, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(111, 'DADA STEPHEN OMOBOLAJI', 11, -14, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(112, 'RAHEEM ABDULQUADIR OPEYEMI', 12, -116, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(113, 'YUSUF JAMIU AYODEJI', 13, -58, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(114, 'UDOH UKARABONG LERI', 14, -1681, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(115, 'GAFAR YUSUF', 16, -400, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(116, 'SHIFATU AMINAT OLUWADAMILOLA', 17, -46, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(117, 'GARBA OCHAYAN PEACE ', 18, -18, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(118, 'JEMENI CHINONSO EMMANUEL', 19, -57, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(119, 'UDOYE EKENE PAUL', 20, -19, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19'),
+(120, 'BALOGUN GAFAR OLABIWONU', 21, -77, 10, 'Feb,2021', 'Bonus Paid', '2021-02-08 20:35:19');
 
 -- --------------------------------------------------------
 
@@ -112,8 +174,8 @@ CREATE TABLE IF NOT EXISTS `constants` (
 --
 
 INSERT INTO `constants` (`id`, `name`, `value`, `description`) VALUES
-(1, 'bonusvalue', 51, ''),
-(2, 'pensionvalue', 2, '');
+(1, 'bonusvalue', 5, ''),
+(2, 'pensionvalue', 3, '');
 
 -- --------------------------------------------------------
 
@@ -162,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `pensions` (
   `type` varchar(50) NOT NULL,
   `time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `pensions`
@@ -194,7 +256,53 @@ INSERT INTO `pensions` (`id`, `name`, `userid`, `pensionvalue`, `month`, `descri
 (23, 'UDOH UKARABONG LERI', 14, -3, 'Feb,2021, Pension Payment of 3', 'Feb,2021', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-04 11:37:13.162645'),
 (24, 'ABIOLA ISRAEL ENIOLA', 15, -3, 'Feb,2021, Pension Payment of 3', 'Feb,2021', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-04 11:37:13.178799'),
 (25, 'UDOH UKARABONG LERI', 14, -5, 'Feb,2021', 'Feb,2021, Pension Payment of 5', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-04 11:42:19.532079'),
-(26, 'ABIOLA ISRAEL ENIOLA', 15, -5, 'Feb,2021', 'Feb,2021, Pension Payment of 5', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-04 11:42:19.541702');
+(26, 'ABIOLA ISRAEL ENIOLA', 15, -5, 'Feb,2021', 'Feb,2021, Pension Payment of 5', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-04 11:42:19.541702'),
+(27, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 111, 'February,2021', 'BALOGUN GAFAR OLABIWONU\'s Registration', 'Pension', '2021-02-06 12:47:42.192127'),
+(28, 'JEMENI CHINONSO EMMANUEL', 19, 4, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 13:19:16.680448'),
+(29, 'JEMENI CHINONSO EMMANUEL', 19, 6, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 13:19:29.243923'),
+(30, 'JEMENI CHINONSO EMMANUEL', 19, 8, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 13:36:45.289031'),
+(31, 'JEMENI CHINONSO EMMANUEL', 19, 9, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 13:44:09.334404'),
+(32, 'GARBA OCHAYAN PEACE ', 18, 6, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 13:45:04.678530'),
+(33, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:09:35.954922'),
+(34, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:18:17.950097'),
+(35, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:20:39.956630'),
+(36, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:38:28.529398'),
+(37, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:41:56.911519'),
+(38, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:43:36.964676'),
+(39, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:44:51.907369'),
+(40, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:46:08.465630'),
+(41, 'UDOH UKARABONG LERI', 14, -24, 'Feb,2021', 'Feb,2021, Pension Payment of 24', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-06 14:48:49.934162'),
+(42, 'ABIOLA ISRAEL ENIOLA', 15, -46, 'Feb,2021', 'Feb,2021, Pension Payment of 46', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-06 14:48:49.949821'),
+(43, 'SHIFATU AMINAT OLUWADAMILOLA', 17, -112, 'Feb,2021', 'Feb,2021, Pension Payment of 112', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-06 14:48:49.960955'),
+(44, 'GARBA OCHAYAN PEACE ', 18, -7, 'Feb,2021', 'Feb,2021, Pension Payment of 7', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-06 14:48:49.982766'),
+(45, 'JEMENI CHINONSO EMMANUEL', 19, -36, 'Feb,2021', 'Feb,2021, Pension Payment of 36', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-06 14:48:50.000063'),
+(46, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:51:58.137798'),
+(47, 'UDOYE EKENE PAUL', 20, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 14:56:02.009203'),
+(48, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 15:11:47.722303'),
+(49, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 15:17:08.860445'),
+(50, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:05:05.638614'),
+(51, 'JEMENI CHINONSO EMMANUEL', 19, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:06:45.785147'),
+(52, 'UDOH UKARABONG LERI', 14, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:19:01.258695'),
+(53, 'BALOGUN GAFAR OLABIWONU', 21, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:23:35.673767'),
+(54, 'GARBA OCHAYAN PEACE ', 18, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:53:28.792290'),
+(55, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 16:54:24.750712'),
+(56, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 17:00:54.823980'),
+(57, 'GAFAR YUSUF', 16, 11, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 17:05:55.047924'),
+(58, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 5, 'February,2021', '1st Gen. Indirect bonus', 'Pension', '2021-02-06 17:05:55.080061'),
+(59, 'GAFAR YUSUF', 16, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 17:20:37.716736'),
+(60, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 1, 'February,2021', 'Direct bonus', 'Pension', '2021-02-06 17:23:17.760756'),
+(61, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 0, 'February,2021', 'Direct bonus', 'Pension', '2021-02-08 10:41:48.706768'),
+(62, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 0, 'February,2021', '1st Gen. Indirect bonus', 'Pension', '2021-02-08 10:41:48.734870'),
+(63, 'Kareem Yusuf', 6, 7, 'February,2021', 'First time Direct bonus', 'Pension', '2021-02-08 16:02:36.742538'),
+(64, 'Kareem Yusuf', 6, -7, 'Feb,2021', 'Feb,2021, Pension Payment of 7.06', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.181563'),
+(65, 'ABIOLA ISRAEL ENIOLA', 10, -12, 'Feb,2021', 'Feb,2021, Pension Payment of 12.34', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.220100'),
+(66, 'RAHEEM ABDULQUADIR OPEYEMI', 12, -7, 'Feb,2021', 'Feb,2021, Pension Payment of 7.36', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.230406'),
+(67, 'UDOH UKARABONG LERI', 14, -1, 'Feb,2021', 'Feb,2021, Pension Payment of 1.18', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.239431'),
+(68, 'GAFAR YUSUF', 16, -12, 'Feb,2021', 'Feb,2021, Pension Payment of 12.94', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.255206'),
+(69, 'SHIFATU AMINAT OLUWADAMILOLA', 17, -2, 'Feb,2021', 'Feb,2021, Pension Payment of 2.95', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.265370'),
+(70, 'GARBA OCHAYAN PEACE ', 18, -1, 'Feb,2021', 'Feb,2021, Pension Payment of 1.18', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.272791'),
+(71, 'JEMENI CHINONSO EMMANUEL', 19, -5, 'Feb,2021', 'Feb,2021, Pension Payment of 5.352', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.284354'),
+(72, 'BALOGUN GAFAR OLABIWONU', 21, -1, 'Feb,2021', 'Feb,2021, Pension Payment of 1.18', 'Pension Paid YUSUF AZEEZ OLAWALE', '2021-02-08 20:44:13.299467');
 
 -- --------------------------------------------------------
 
@@ -242,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `ranks` (
   `newrank` varchar(50) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `ranks`
@@ -284,7 +392,27 @@ INSERT INTO `ranks` (`id`, `name`, `userid`, `oldrank`, `newrank`, `time`) VALUE
 (33, 'Haliru', 1, 'SAPPHIRE', 'BRONZE', '2021-01-30 17:41:58'),
 (34, 'DADA STEPHEN OMOBOLAJI', 11, 'RUBY', 'SAPPHIRE', '2021-02-01 15:16:09'),
 (35, 'Lateef Yusuf', 7, 'BRONZE', 'SAPPHIRE', '2021-02-03 11:49:49'),
-(36, 'Haliru', 1, 'BRONZE', 'SAPPHIRE', '2021-02-03 11:49:49');
+(36, 'Haliru', 1, 'BRONZE', 'SAPPHIRE', '2021-02-03 11:49:49'),
+(37, 'JEMENI CHINONSO EMMANUEL', 19, 'none', 'SAPPHIRE', '2021-02-06 13:19:16'),
+(38, 'GARBA OCHAYAN PEACE ', 18, 'none', 'BRONZE', '2021-02-06 13:19:43'),
+(39, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 'BRONZE', 'none', '2021-02-06 13:36:45'),
+(40, 'Haliru', 2, 'BRONZE', 'SAPPHIRE', '2021-02-06 13:36:45'),
+(41, 'GARBA OCHAYAN PEACE ', 18, 'BRONZE', 'SAPPHIRE', '2021-02-06 13:45:04'),
+(42, 'JEMENI CHINONSO EMMANUEL', 19, 'BRONZE', 'SAPPHIRE', '2021-02-06 14:12:27'),
+(43, 'UDOYE EKENE PAUL', 20, 'none', 'SAPPHIRE', '2021-02-06 14:55:07'),
+(44, 'YUSUF JAMIU AYODEJI', 13, 'BRONZE', 'none', '2021-02-06 16:09:24'),
+(45, 'UDOH UKARABONG LERI', 14, 'BRONZE', 'SAPPHIRE', '2021-02-06 16:10:05'),
+(46, 'YUSUF JAMIU AYODEJI', 13, 'none', 'BRONZE', '2021-02-06 16:21:23'),
+(47, 'YUSUF JAMIU AYODEJI', 13, 'BRONZE', 'SAPPHIRE', '2021-02-06 16:22:09'),
+(48, 'BALOGUN GAFAR OLABIWONU', 21, 'none', 'SAPPHIRE', '2021-02-06 16:23:11'),
+(49, 'SHIFATU AMINAT OLUWADAMILOLA', 17, 'SAPPHIRE', 'RUBY', '2021-02-06 17:00:54'),
+(50, 'GAFAR YUSUF', 16, 'none', 'SAPPHIRE', '2021-02-06 17:04:39'),
+(51, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 'none', 'RUBY', '2021-02-06 17:04:39'),
+(52, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 'RUBY', 'none', '2021-02-06 17:20:37'),
+(53, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 'none', 'BRONZE', '2021-02-06 17:22:34'),
+(54, 'RAHEEM ABDULQUADIR OPEYEMI', 12, 'BRONZE', 'RUBY', '2021-02-06 17:23:17'),
+(55, 'Lateef Yusuf', 3, 'BRONZE', 'SAPPHIRE', '2021-02-06 18:13:25'),
+(56, 'Kareem Yusuf', 6, 'SILVER', 'SAPPHIRE', '2021-02-08 16:02:36');
 
 -- --------------------------------------------------------
 
@@ -306,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   PRIMARY KEY (`id`),
   KEY `BV transaction link to manager` (`issuer`),
   KEY `BV transactions link to users` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `transactions`
@@ -412,7 +540,49 @@ INSERT INTO `transactions` (`id`, `name`, `issuer`, `oldbv`, `thisbv`, `newbv`, 
 (126, 'ABIOLA ISRAEL ENIOLA', 7, 0, 200, 200, 'Rice |Rice |', '2021-01-30 17:41:57', 15),
 (127, 'DADA STEPHEN OMOBOLAJI', 7, 0, 36000, 36000, 'Rice-1 |Beans-55 |Sweet Kola-17 |Green Tea-134 |', '2021-02-01 15:16:09', 11),
 (128, 'DADA STEPHEN OMOBOLAJI', 7, 36000, 10000, 46000, 'Rice-100 |', '2021-02-03 11:47:57', 11),
-(129, 'Lateef Yusuf', 7, 0, 26700, 26700, 'Supplement Tablet-178 |', '2021-02-03 11:49:48', 7);
+(129, 'Lateef Yusuf', 7, 0, 26700, 26700, 'Supplement Tablet-178 |', '2021-02-03 11:49:48', 7),
+(130, 'JEMENI CHINONSO EMMANUEL', 7, 0, 200, 200, 'Gaari-1 |', '2021-02-06 13:17:47', 19),
+(131, 'JEMENI CHINONSO EMMANUEL', 7, 200, 200, 400, 'Gaari-1 |', '2021-02-06 13:19:16', 19),
+(132, 'JEMENI CHINONSO EMMANUEL', 7, 400, 150, 550, 'Supplement Tablet-1 |', '2021-02-06 13:19:29', 19),
+(133, 'GARBA OCHAYAN PEACE ', 7, 0, 100, 100, 'Rice-1 |', '2021-02-06 13:19:43', 18),
+(134, 'JEMENI CHINONSO EMMANUEL', 7, 600, 150, 750, 'Supplement Tablet-1 |', '2021-02-06 13:36:45', 19),
+(135, 'JEMENI CHINONSO EMMANUEL', 7, 750, 100, 850, 'Rice-1 |', '2021-02-06 13:44:09', 19),
+(136, 'GARBA OCHAYAN PEACE ', 7, 500, 100, 600, 'Rice-1 |', '2021-02-06 13:45:04', 18),
+(137, 'JEMENI CHINONSO EMMANUEL', 7, 200, 100, 300, 'Rice-1 |', '2021-02-06 14:09:35', 19),
+(138, 'JEMENI CHINONSO EMMANUEL', 7, 200, 100, 300, 'Rice-1 |', '2021-02-06 14:12:27', 19),
+(139, 'JEMENI CHINONSO EMMANUEL', 7, 300, 150, 450, 'Beans-1 |', '2021-02-06 14:18:17', 19),
+(140, 'JEMENI CHINONSO EMMANUEL', 7, 450, 100, 550, 'Rice-1 |', '2021-02-06 14:20:39', 19),
+(141, 'JEMENI CHINONSO EMMANUEL', 7, 550, 100, 650, 'Rice-1 |', '2021-02-06 14:38:28', 19),
+(142, 'JEMENI CHINONSO EMMANUEL', 7, 650, 100, 750, 'Rice-1 |', '2021-02-06 14:41:56', 19),
+(143, 'JEMENI CHINONSO EMMANUEL', 7, 750, 100, 850, 'Rice-1 |', '2021-02-06 14:43:36', 19),
+(144, 'JEMENI CHINONSO EMMANUEL', 7, 850, 100, 950, 'Rice-1 |', '2021-02-06 14:44:51', 19),
+(145, 'JEMENI CHINONSO EMMANUEL', 7, 950, 100, 1050, 'Rice-1 |', '2021-02-06 14:46:08', 19),
+(146, 'JEMENI CHINONSO EMMANUEL', 7, 1050, 100, 1150, 'Rice-1 |', '2021-02-06 14:51:58', 19),
+(147, 'UDOYE EKENE PAUL', 7, 800, 100, 900, 'Rice-1 |', '2021-02-06 14:55:07', 20),
+(148, 'UDOYE EKENE PAUL', 7, 900, 100, 1000, 'Rice-1 |', '2021-02-06 14:56:01', 20),
+(149, 'JEMENI CHINONSO EMMANUEL', 7, 1150, 100, 1250, 'Rice-1 |', '2021-02-06 15:11:47', 19),
+(150, 'JEMENI CHINONSO EMMANUEL', 7, 1250, 100, 1350, 'Rice-1 |', '2021-02-06 15:17:08', 19),
+(151, 'JEMENI CHINONSO EMMANUEL', 7, 1350, 100, 1450, 'Rice-1 |', '2021-02-06 16:05:05', 19),
+(152, 'JEMENI CHINONSO EMMANUEL', 7, 1450, 100, 1550, 'Rice-1 |', '2021-02-06 16:06:45', 19),
+(153, 'UDOH UKARABONG LERI', 7, 0, 100, 100, 'Rice-1 |', '2021-02-06 16:09:24', 14),
+(154, 'UDOH UKARABONG LERI', 7, 100, 300, 400, 'Rice-3 |', '2021-02-06 16:10:05', 14),
+(155, 'UDOH UKARABONG LERI', 7, 400, 100, 500, 'Rice-1 |', '2021-02-06 16:19:01', 14),
+(156, 'YUSUF JAMIU AYODEJI', 7, 0, 200, 200, 'Rice-2 |', '2021-02-06 16:21:23', 13),
+(157, 'YUSUF JAMIU AYODEJI', 7, 200, 100, 300, 'Rice-1 |', '2021-02-06 16:22:09', 13),
+(158, 'BALOGUN GAFAR OLABIWONU', 7, 0, 300, 300, 'Rice-3 |', '2021-02-06 16:23:11', 21),
+(159, 'BALOGUN GAFAR OLABIWONU', 7, 300, 100, 400, 'Rice-1 |', '2021-02-06 16:23:35', 21),
+(160, 'GARBA OCHAYAN PEACE ', 7, 600, 100, 700, 'Rice-1 |', '2021-02-06 16:53:28', 18),
+(161, 'SHIFATU AMINAT OLUWADAMILOLA', 7, 400, 100, 500, 'Rice-1 |', '2021-02-06 16:54:24', 17),
+(162, 'SHIFATU AMINAT OLUWADAMILOLA', 7, 500, 100, 600, 'Rice-1 |', '2021-02-06 17:00:54', 17),
+(163, 'GAFAR YUSUF', 7, 0, 1000, 1000, 'Rice-10 |', '2021-02-06 17:04:39', 16),
+(164, 'GAFAR YUSUF', 7, 1000, 1000, 2000, 'Rice-10 |', '2021-02-06 17:05:54', 16),
+(165, 'GAFAR YUSUF', 7, 2000, 100, 2100, 'Rice-1 |', '2021-02-06 17:20:37', 16),
+(166, 'RAHEEM ABDULQUADIR OPEYEMI', 7, 0, 100, 100, 'Rice-1 |', '2021-02-06 17:22:34', 12),
+(167, 'RAHEEM ABDULQUADIR OPEYEMI', 7, 100, 100, 200, 'Rice-1 |', '2021-02-06 17:23:05', 12),
+(168, 'RAHEEM ABDULQUADIR OPEYEMI', 7, 200, 100, 300, 'Rice-1 |', '2021-02-06 17:23:17', 12),
+(169, 'Lateef Yusuf', 7, 720, 200, 920, 'Rice-2 |', '2021-02-06 18:13:25', 3),
+(170, 'SHIFATU AMINAT OLUWADAMILOLA', 7, 600, 50, 650, 'Sweet Kola-1 |', '2021-02-08 10:41:48', 17),
+(171, 'Kareem Yusuf', 7, 0, 600, 600, 'Rice-6 |', '2021-02-08 16:02:36', 6);
 
 -- --------------------------------------------------------
 
@@ -430,15 +600,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `sponsor` bigint NOT NULL,
   `ancestors` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `descendants` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `bronzevalue` int NOT NULL DEFAULT '0',
-  `bonusvalue` int NOT NULL DEFAULT '0',
-  `pensionvalue` int NOT NULL DEFAULT '0',
+  `bronzevalue` float NOT NULL DEFAULT '0',
+  `bonusvalue` float NOT NULL DEFAULT '0',
+  `pensionvalue` float NOT NULL DEFAULT '0',
   `rank` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'none',
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0000000000',
   `bankaccount` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0000000000',
   `dateregistered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -446,21 +616,26 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `parent`, `sponsor`, `ancestors`, `descendants`, `bronzevalue`, `bonusvalue`, `pensionvalue`, `rank`, `phone`, `bankaccount`, `dateregistered`) VALUES
 (1, 'hallykola', 'Haliru', 'hally123', 0, 0, '', '0', 1450, 0, 0, 'SAPPHIRE', '35342422', '2343423535', '2021-01-18 07:54:39'),
-(2, 'hallykola', 'Haliru', '$2y$10$1ueea65VAolalckrV7ZWBOOtLYuASmoqe8n89jyiXHQrVG22nuEaK', 7, 0, '', '0', 2470, 0, 0, 'BRONZE', '35342422', '2343423535', '2021-01-18 08:01:47'),
-(3, 'hallykola', 'Lateef Yusuf', '$2y$10$DUHdu6xb6oDiBiYJ/HbcO.dtOU3YQgUcWuee7JTOr54xUv5QUJSgy', 2, 0, '', '0', 720, 0, 0, 'BRONZE', '', '1234', '2021-01-18 10:00:07'),
+(2, 'hallykola', 'Haliru', '$2y$10$1ueea65VAolalckrV7ZWBOOtLYuASmoqe8n89jyiXHQrVG22nuEaK', 7, 0, '', '0', 2470, 0, 0, 'SAPPHIRE', '35342422', '2343423535', '2021-01-18 08:01:47'),
+(3, 'hallykola', 'Lateef Yusuf', '$2y$10$DUHdu6xb6oDiBiYJ/HbcO.dtOU3YQgUcWuee7JTOr54xUv5QUJSgy', 2, 0, '', '0', 920, 0, 0, 'SAPPHIRE', '', '1234', '2021-01-18 10:00:07'),
 (4, 'hallykola', 'Haliru Yusuf', '$2y$10$GrpzR237saYi.6aC09H1dOEfs/Cmd/QQcbiuYO4f.CRkFV7zONHA6', 3, 0, '', '0', 0, 0, 0, 'none', '08068858953', '12345', '2021-01-19 08:00:21'),
 (5, 'admin', 'Haliru Yusuf', '$2y$10$7qZ1dTvFc4rlkw6fsephP.iBu8ad6SQ56XxiML7H39uNU0vJAwXS6', 3, 0, '', '0', 200, -10, 0, 'BRONZE', '08068858953', '12345', '2021-01-19 08:00:59'),
-(6, 'kreemzo', 'Kareem Yusuf', '$2y$10$KHzU9YencALa6LivcoGnrucNTarv1zpmTGsE3bMwNCvWkQ..KsEem', 1, 0, '', '0', 0, 0, 0, 'SILVER', '08068858953', '12345', '2021-01-19 08:03:37'),
+(6, 'kreemzo', 'Kareem Yusuf', '$2y$10$KHzU9YencALa6LivcoGnrucNTarv1zpmTGsE3bMwNCvWkQ..KsEem', 1, 0, '', '0', 600, 0, 0, 'SAPPHIRE', '08068858953', '12345', '2021-01-19 08:03:37'),
 (7, 'lateef', 'Lateef Yusuf', '$2y$10$/HyrSATZ/RNd7ou4qGUCD.dPy5BglDnvJBDCS1B6O0IR6dfk3MXAu', 1, 0, '', '0', 26700, 0, 0, 'SAPPHIRE', '08068858953', '123456', '2021-01-19 08:07:39'),
 (8, 'lateef', 'Lateef Yusuf', '$2y$10$Qod48nnEJyO8yIBqPy346eHDpRaX5WTxY8tdwwu52DyUNFRL6JTJq', 16, 0, '', '0', 0, 0, 0, 'none', '08068858953', '12345', '2021-01-19 08:10:15'),
 (9, 'hallykola1', 'Haliru Yusuf ', '$2y$10$5vd8ahvEd/2wqqL1y.lCYOgtyTpBKhyWmFLyOpM64e4jUryKhHk.a', 0, 1, NULL, NULL, 200, 0, 0, 'BRONZE', '0806885834', '00191214523', '2021-01-21 21:33:01'),
 (10, 'abiola', 'ABIOLA ISRAEL ENIOLA', '$2y$10$cGbU4EhA5KBnZdTr/wrpQeiYXBa/rQZuyLspTeWNOUKwFo2xF/Xy6', 0, 45, NULL, NULL, 0, 0, 0, 'RUBY', '070', '0', '2021-01-22 07:50:35'),
 (11, 'dada', 'DADA STEPHEN OMOBOLAJI', '$2y$10$zi9mbyOYK5o0cQ7eba9Mt.OSHdtXRkCV6kH2TveQw0q36kZQ5kV1S', 0, 1, NULL, NULL, 46000, 0, 0, 'SAPPHIRE', '08023434567', '00', '2021-01-23 18:46:39'),
-(12, 'raheem', 'RAHEEM ABDULQUADIR OPEYEMI', '$2y$10$0BSy12jDmpSJ9t7O2448q.nrenM4gD31yX2rIUEGCVU/I2wFPZKNO', 2, 7, NULL, NULL, 0, 0, 0, 'BRONZE', '', '0', '2021-01-23 19:50:48'),
-(13, 'jamiu', 'YUSUF JAMIU AYODEJI', '$2y$10$j3kwYpdNzy5qi2zOeK7eNOLTJo7OmUw1KBNWirFsC7L/v90GK6K.i', 12, 7, NULL, NULL, 0, 0, 0, 'BRONZE', '', '0', '2021-01-23 20:03:14'),
-(14, 'udoh', 'UDOH UKARABONG LERI', '$2y$10$DenzirrJd005AoPMHKvBHeo5o9Yw27YvxUsL6deL/xbp8Tw02AdqW', 13, 7, NULL, NULL, 0, 0, 24, 'BRONZE', '', '0', '2021-01-23 20:11:17'),
-(15, 'israel', 'ABIOLA ISRAEL ENIOLA', '$2y$10$WxY5fQxq46sV4eFNPXNiEOEqXIwJgyUkzw94a7hOWKoZGTJf0LL2C', 14, 7, NULL, NULL, 200, 0, 46, 'BRONZE', '', '0', '2021-01-24 10:03:38'),
-(16, 'gafar', 'GAFAR YUSUF', '$2y$10$7TrCQVM7/AidCAGMFQfJY.1NSNOBKScrY4ZIFUQaa.k6Aht72cwuy', 12, 1, NULL, NULL, 0, 0, 0, 'none', '08023434567', '0019121524', '2021-01-24 10:06:37');
+(12, 'raheem', 'RAHEEM ABDULQUADIR OPEYEMI', '$2y$10$0BSy12jDmpSJ9t7O2448q.nrenM4gD31yX2rIUEGCVU/I2wFPZKNO', 2, 7, NULL, NULL, 300, 0, 0, 'RUBY', '', '0', '2021-01-23 19:50:48'),
+(13, 'jamiu', 'YUSUF JAMIU AYODEJI', '$2y$10$j3kwYpdNzy5qi2zOeK7eNOLTJo7OmUw1KBNWirFsC7L/v90GK6K.i', 12, 7, NULL, NULL, 300, 0, 0, 'SAPPHIRE', '', '0', '2021-01-23 20:03:14'),
+(14, 'udoh', 'UDOH UKARABONG LERI', '$2y$10$DenzirrJd005AoPMHKvBHeo5o9Yw27YvxUsL6deL/xbp8Tw02AdqW', 13, 7, NULL, NULL, 500, 0, 0, 'SAPPHIRE', '', '0', '2021-01-23 20:11:17'),
+(15, 'israel', 'ABIOLA ISRAEL ENIOLA', '$2y$10$WxY5fQxq46sV4eFNPXNiEOEqXIwJgyUkzw94a7hOWKoZGTJf0LL2C', 14, 7, NULL, NULL, 200, 0, 0, 'BRONZE', '', '0', '2021-01-24 10:03:38'),
+(16, 'gafar', 'GAFAR YUSUF', '$2y$10$7TrCQVM7/AidCAGMFQfJY.1NSNOBKScrY4ZIFUQaa.k6Aht72cwuy', 12, 1, NULL, NULL, 2100, 0, 0, 'SAPPHIRE', '08023434567', '0019121524', '2021-01-24 10:06:37'),
+(17, 'shifatu', 'SHIFATU AMINAT OLUWADAMILOLA', '$2y$10$kDjtQViqwklw/V2rw0UDj.dwcZprxGte9NnCrU1Pq8F8YTWDbfTWK', 12, 11, NULL, NULL, 650, 0, 0, 'RUBY', '', '0', '2021-02-06 12:37:01'),
+(18, 'garba', 'GARBA OCHAYAN PEACE ', '$2y$10$TYPs2jsOU.y2BuqYmMkVde/2D/WDC5eAxLqa/OmyRuaOsKYPuHIoS', 17, 17, NULL, NULL, 700, 0, 0, 'SAPPHIRE', '', '0', '2021-02-06 12:39:14'),
+(19, 'jemeni', 'JEMENI CHINONSO EMMANUEL', '$2y$10$7MmBag9/pQyzWcI5198lVexokCivefbGGEez3FyvemPxvvGq7NLdi', 17, 17, NULL, NULL, 1550, 0, 0, 'SAPPHIRE', '08068858953, 0708236', '0019121524 gtbank', '2021-02-06 12:41:45'),
+(20, 'udoye', 'UDOYE EKENE PAUL', '$2y$10$9ByYiLKMkzbwVeqCD/ZwW.PvyBlKzDYYgq8uhCWM7UWOBP3b/4KwS', 17, 17, NULL, NULL, 1000, 0, 1, 'SAPPHIRE', '', '0', '2021-02-06 12:44:41'),
+(21, 'balogun', 'BALOGUN GAFAR OLABIWONU', '$2y$10$AwCgjqpW1kt1GTc43RXsXebOXthMj62p8Yky4jtwzuOEzRG.eNp0K', 19, 17, NULL, NULL, 400, 0, 0, 'SAPPHIRE', '', '0', '2021-02-06 12:47:42');
 
 --
 -- Constraints for dumped tables
