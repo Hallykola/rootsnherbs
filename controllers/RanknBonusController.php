@@ -144,7 +144,7 @@ class RanknBonusController{
     $ranker->addRank($item->get('name'), $item->get('id') ,$item->get('rank') , $level);      
     //pay first time direct bonus to new sapphires (>300bv)  
     if(strtoupper($level)=='SAPPHIRE'){
-        $this->pay($item,0.20*$item->get('bronzevalue'), 'First time Direct bonus');
+        $this->payfirsttimer($item,0.20*$item->get('bronzevalue'), 'First time Direct bonus');
         $jjc = TRUE ;
     }
 }
@@ -186,6 +186,28 @@ class RanknBonusController{
         }
     }
 
+    function payfirsttimer($person, $amount, $description){
+        $famount = number_format($amount - 0.02*$amount, 2); //remove bank charges
+        $penamount = number_format($famount* 0.05, 2);  //user pension contribution
+        $compenamount = number_format($penamount* 0.20, 2); //company pension addition
+        $totalpension = number_format($penamount + $compenamount, 2); //company plus user
+        $nonpensioneramount = $famount;
+        $pensioneramount = number_format($famount - $penamount, 2); //charges and pension removed
+        if($person->get('id')!=0){
+        $bonusmaker = new BonusesModel();
+        $pensionmaker = new PensionsModel();
+        $transactionid = 10;//$transactionid->fetch_assoc()['LAST_INSERT_ID()'];
+        $play1 = new UsersModel();
+        //begin payment
+        $bonusmaker->addBonus($person->get('name'),$person->get('id'),$pensioneramount, $transactionid,$description,'Pension deducted');
+        $pensionmaker->addPension($person->get('name'),$person->get('id'),$totalpension, date('F,Y'),$description,'Pension');
+        
+        $play1->updateUserItembyID ('bonusvalue','di',$person->get('bonusvalue')+$pensioneramount,$person->get('id'));
+        $play1->updateUserItembyID ('pensionvalue','di',$person->get('pensionvalue')+$totalpension,$person->get('id'));
+
+        
+    }
+}
         function payregistration($sponsor, $amount, $description){
             $play1 = new UsersModel();
             $allusers = $play1->getAllUsers();
