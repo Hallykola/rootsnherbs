@@ -138,6 +138,17 @@ $("#suggesstion-box").hide();
         window.location.href = "paybonuses?limit="+x+"&pay=1";
     };
 </script>
+<script>
+function confirmdelete(product,id){
+    
+    if (confirm("Do you really want to delete "+product+" !")) {
+
+  location.href= 'deletethings?product='+id;
+} else {
+  txt = "You pressed Cancel!";
+}
+}
+</script>
 </body>
 
 </html>

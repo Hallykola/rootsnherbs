@@ -55,14 +55,14 @@ class ProductsModel {
     
     function deleteProductbyID ($id){
         global $conn;
-        $sql_putTransactions = "DELETE FROM `products` WHERE `id` = '?'";
+        $sql_putTransactions = "DELETE FROM `products` WHERE `id` = ?";
         $statement_putTransactions = $conn->prepare($sql_putTransactions);
         $statement_putTransactions->bind_param("i",$id);
         $statement_putTransactions->execute();
         if($statement_putTransactions->execute()==TRUE){
-           echo "TRUE";
+           return "TRUE";
        }else{
-           echo "FALSE";
+           return "FALSE";
        }
         $statement_putTransactions->close();
         $conn->close();

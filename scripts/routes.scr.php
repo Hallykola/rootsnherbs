@@ -6,7 +6,9 @@ Routes::set('', function(){
 Routes::set('/', function(){
     ControllerRoutes::RenderPage('login');
 });
-
+Routes::set('deletethings', function(){
+    ControllerRoutes::RenderPage('deletethings');
+});
 
 Routes::set('index', function(){
     ControllerRoutes::RenderPage('index');

@@ -309,20 +309,23 @@ include_once('header.php');
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
+                                            <th>S/N</th>
                                             <th>Product Name</th>
                                             <th>Business Value</th>
-                                            <th>Description</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                        
                                         <?php
+                                        $i = 0;
                                         while ($row = mysqli_fetch_array($someproducts)) { 
-        echo "<tr><td>".$row['id']."</td>";
+                                            $i += 1;
+        echo "<tr><td>".$i."</td>";
         echo "<td>".$row['productname']."</td>"; 
         echo "<td>".$row['bronzevalue']."</td>";  
-        echo "<td>".$row['description']."</td></tr>";  
+        //echo "<td>".$row['description']."</td></tr>";
+        echo '<td><img src="assets/img/icons/delete.png" height="25" width="25" onclick = "confirmdelete(\''.$row['productname'].'\',\''.$row['id'].'\');" /></td></tr>';  
           
         
            }  
